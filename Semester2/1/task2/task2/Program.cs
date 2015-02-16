@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace task2
+namespace Task2
 {
     class Program
     {
@@ -8,25 +8,25 @@ namespace task2
         {
             System.Console.WriteLine("Input the index");
             int index = System.Convert.ToInt32(System.Console.ReadLine());
-            System.Console.WriteLine(Fibonachi(index));
+            System.Console.WriteLine(Fibonacci(index));
         }
-
-          static int Fibonachi(int index)
+        
+        static int Fibonacci(int index)
         {
             if (index == 0 || index == 1)
                 return 1;
             else
             {
-                int a = 1;
-                int b = 1;
-                int result = 0;
+                int currentFibonacciNumber = 1;
+                int previousFibonacciNumber = 1;
+                int auxilary = 0;
                 for (int i = 2; i <= index; i++)
                 {
-                    result = a + b;
-                    a = b;
-                    b = result;
+                    auxilary = currentFibonacciNumber;
+                    currentFibonacciNumber = currentFibonacciNumber + previousFibonacciNumber;
+                    previousFibonacciNumber = auxilary;
                 }
-                return result;
+                return currentFibonacciNumber;
             }
         }
     }

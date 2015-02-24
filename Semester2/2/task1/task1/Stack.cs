@@ -44,8 +44,8 @@ namespace Task1
                 this.next = next;
             }
 
-            public int value;
-            public StackElement next;
+            public int value { get; set; }
+            public StackElement next { get; set; }
         }
 
     }

@@ -15,6 +15,7 @@ namespace Task2
             list.RemoveElement(8);
             list.AddInOrder(5);
             Console.WriteLine(list.Size);
+            Console.WriteLine(list.ReturnValue(0));
         }
     }
 }

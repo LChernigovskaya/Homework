@@ -68,6 +68,17 @@ namespace Task2
             auxilary.next = current;
         }
 
+        public int ReturnValue(int index)
+        {
+            ListElement auxilary = head;
+            while (index != 0)
+            {
+                auxilary = auxilary.next;
+                index--;
+            }
+            return auxilary.value;
+        }
+
         class ListElement
         {
             public ListElement(int value)

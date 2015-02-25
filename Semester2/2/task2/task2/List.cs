@@ -2,6 +2,7 @@
 
 namespace Task2
 {
+    // List as a class
     class List
     {
         private ListElement head;
@@ -10,6 +11,20 @@ namespace Task2
 
         public int Size { get; private set; }
 
+        // Element of list
+        class ListElement
+        {
+            public ListElement(int value)
+            {
+                this.value = value;
+                this.next = null;
+            }
+
+            public int value { get; set; }
+            public ListElement next { get; set; }
+        }
+
+        // Show all element of list
         public void PrintList()
         {
             ListElement auxilary = head;
@@ -21,6 +36,7 @@ namespace Task2
             Console.WriteLine();
         }
 
+        // Add new element of ascending
         public void AddInOrder(int value)
         {
             ListElement newElement = new ListElement(value);
@@ -55,6 +71,7 @@ namespace Task2
             }
         }
 
+        // Remove element with a certain value
         public void RemoveElement(int value)
         {
             if (head == null)
@@ -68,6 +85,7 @@ namespace Task2
             auxilary.next = current;
         }
 
+        // Return value of the index
         public int ReturnValue(int index)
         {
             ListElement auxilary = head;
@@ -78,19 +96,5 @@ namespace Task2
             }
             return auxilary.value;
         }
-
-        class ListElement
-        {
-            public ListElement(int value)
-            {
-                this.value = value;
-                this.next = null;
-            }
-
-            public int value { get; set; }
-            public ListElement next { get; set; }
-        }
     }
-
-    
 }

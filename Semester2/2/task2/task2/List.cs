@@ -77,13 +77,18 @@ namespace Task2
             if (head == null)
                 return;
             if (head.value == value)
+            {
                 head = head.next;
+                Size--;
+                return;
+            }
             ListElement auxilary = head;
             while (auxilary.next != null && auxilary.next.value != value)
                 auxilary = auxilary.next;
             if (auxilary.next == null)
                 return;
             auxilary.next = auxilary.next.next;
+            Size--;
             return;
         }
 

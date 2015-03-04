@@ -2,7 +2,9 @@
 
 namespace Task3
 {
-    // List as a class
+    /// <summary>
+    /// List as a class
+    /// </summary>
     class List
     {
         private ListElement head;
@@ -10,8 +12,10 @@ namespace Task3
         private ListElement tail;
 
         public int Length { get; private set; }
-
-        // Element of list
+        
+        /// <summary>
+        /// Element of list
+        /// </summary>
         class ListElement
         {
             public ListElement(string value)
@@ -26,7 +30,9 @@ namespace Task3
             public int countRepetitions { get; set; }
         }
 
-        // Show all element of list
+        /// <summary>
+        /// Show all elements of list
+        /// </summary>
         public void PrintList()
         {
             ListElement auxilary = head;
@@ -38,7 +44,10 @@ namespace Task3
             Console.WriteLine();
         }
 
-        // Add new element
+        /// <summary>
+        /// Add new element
+        /// </summary>
+        /// <param name="value">Word to be added</param>
         public void Add(string value)
         {
             if (head == null)
@@ -65,7 +74,10 @@ namespace Task3
             }
         }
 
-        // Remove element with a certain value
+        /// <summary>
+        /// Remove element with a certain value
+        /// </summary>
+        /// <param name="value">word to be deleted</param>
         public void RemoveElement(string value)
         {
             if (head == null)
@@ -96,7 +108,11 @@ namespace Task3
             return;
         }
 
-        // Return value of the index
+        /// <summary>
+        /// Return value of the index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public string ReturnValue(int index)
         {
             ListElement auxilary = head;
@@ -108,7 +124,11 @@ namespace Task3
             return auxilary.value;
         }
 
-        //Such element is exist in list or not
+        /// <summary>
+        /// Such element is exist in list or not
+        /// </summary>
+        /// <param name="value">value to be checked</param>
+        /// <returns></returns>
         public bool IsExist(string value)
         {
             if (head == null)

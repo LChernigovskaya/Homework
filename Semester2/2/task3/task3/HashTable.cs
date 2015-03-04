@@ -2,6 +2,9 @@
 
 namespace Task3
 {
+    /// <summary>
+    /// Implementation of the interface of hash-table
+    /// </summary>
     class HashTable : InterfaceHashTable
     {
         public HashTable(int maxSize)
@@ -15,7 +18,12 @@ namespace Task3
         private int maxSize;
         private List[] hashTable;
 
-        public int Hash(string inputString)
+        /// <summary>
+        /// hash function
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns>Index of input string in hash table</returns>
+        private int Hash(string inputString)
         {
             int primeNumber = 67;
             int degree = 1;
@@ -47,17 +55,10 @@ namespace Task3
             return hashTable[index].IsExist(value);
         }
 
-        public void PrintListOfIndex(int index)
+        public void PrintList(string value)
         {
+            int index = Hash(value);
             hashTable[index].PrintList();
-        }
-
-        public void PrintHashTable()
-        {
-            for (int i = 0; i < maxSize; i++)
-            {
-                PrintListOfIndex(i);
-            }
         }
 
         public void PrintStatistic()
@@ -72,7 +73,7 @@ namespace Task3
                 if (hashTable[i].Length == 0)
                     emptyCells++;
             }
-            Console.WriteLine("Number elements of list: " + numberOfElements);
+            Console.WriteLine("Number of words in hash-table: " + numberOfElements);
             Console.WriteLine("Average length: " + average);
             Console.WriteLine("Empty cells: " + emptyCells);
         }

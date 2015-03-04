@@ -7,7 +7,7 @@ namespace Task3
     {
         static void Main(string[] args)
         {
-            HashTable hash = new HashTable(97);
+            InterfaceHashTable hash = new HashTable(97);
 
             string[] file = File.ReadAllLines("hash.txt");
 
@@ -27,10 +27,10 @@ namespace Task3
             }
             hash.PrintStatistic();
             Console.WriteLine(hash.IsExist("it"));
-            hash.PrintListOfIndex(hash.Hash("it"));
+            hash.PrintList("it");
             hash.RemoveElement("it");
             Console.WriteLine(hash.IsExist("it"));
-            hash.PrintListOfIndex(hash.Hash("it"));
+            hash.PrintList("it");
             hash.RemoveElement("feelings");
             Console.WriteLine(hash.IsExist("feelings"));
         }

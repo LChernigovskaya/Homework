@@ -2,7 +2,9 @@
 
 namespace Task4
 {
-    //StackCalculator
+    /// <summary>
+    /// Stack Calculator
+    /// </summary>
     class Calc
     {
         public Calc(InterfaceStack<double> stack)
@@ -12,7 +14,9 @@ namespace Task4
 
         private InterfaceStack<double> stackCalc;
 
-        //Perform the operation
+        /// <summary>
+        /// Perform the operation
+        /// </summary>
         private double CalculateResult(char operation)
         {
             double number2 = stackCalc.Pop();
@@ -33,7 +37,10 @@ namespace Task4
             return (inputString == "+" || inputString == "-" || inputString == "*" || inputString == "/");
         }
 
-        //Get numbers and operation, calculate and add result in stack
+        /// <summary>
+        /// Get numbers and operation, calculate and add result in stack
+        /// </summary>
+        /// <param name="inputString">Number or operation</param>
         public void Calculate(string inputString)
         {
             if (IsOperation(inputString))
@@ -48,7 +55,10 @@ namespace Task4
             }
         }
 
-        //show the result of last operation
+        /// <summary>
+        /// show the result of last operation
+        /// </summary>
+        /// <returns>result</returns>
         public double ShowResult()
         {
             return stackCalc.Top();

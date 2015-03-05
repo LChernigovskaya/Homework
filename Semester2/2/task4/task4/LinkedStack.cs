@@ -2,63 +2,59 @@
 
 namespace Task4
 {
-    //Stack based on links
+    /// <summary>
+    /// Stack based on links
+    /// </summary>
     class LinkedStack<T> : InterfaceStack<T>
     {
-        //Element of stack
         private class StackElement
         {
             public StackElement(T value, StackElement next)
             {
-                this.value = value;
-                this.next = next;
+                this.Value = value;
+                this.Next = next;
             }
 
-            public T value { get; set; }
-            public StackElement next { get; set; }
+            public T Value { get; set; }
+            public StackElement Next { get; set; }
         }
 
         private StackElement head;
 
-        //Add new element
         public void Push(T value)
         {
             StackElement newElement = new StackElement(value, head);
             head = newElement;
         }
 
-        //Return top element and remove it
         public T Pop()
         {
             if (IsEmpty())
                 return default(T);
-            T value = head.value;
-            head = head.next;
+            T value = head.Value;
+            head = head.Next;
             return value;
         }
 
-        //Return top element
         public T Top()
         {
             if (IsEmpty())
                 return default(T);
-            return head.value;
+            return head.Value;
         }
 
-        //Stack is empty or not
-        private bool IsEmpty()
+        public bool IsEmpty()
         {
             return (head == null);
         }
 
-        //Print stack
         public void PrintStack()
         {
             StackElement auxilary = head;
             while (auxilary != null)
             {
-                Console.Write(auxilary.value + " ");
-                auxilary = auxilary.next;
+                Console.Write(auxilary.Value + " ");
+                auxilary = auxilary.Next;
             }
             Console.WriteLine();
         }

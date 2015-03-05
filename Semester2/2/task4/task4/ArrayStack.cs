@@ -2,7 +2,9 @@
 
 namespace Task4
 {
-    //Stack based on array
+    /// <summary>
+    /// Stack based on array
+    /// </summary>
     class ArrayStack<T> : InterfaceStack<T> 
     {
         public ArrayStack(int maxSize)
@@ -16,14 +18,12 @@ namespace Task4
         private int currentSize;
         private T[] array;
 
-        //Add new element
         public void Push(T value)
         {
             array[currentSize] = value;
             currentSize++;
         }
 
-        //Print Stack
         public void PrintStack()
         {
             for (int i = 0; i < currentSize; i++)
@@ -32,7 +32,6 @@ namespace Task4
             return;
         }
 
-        //Return top element and remove it
         public T Pop()
         {
             if (IsEmpty())
@@ -42,7 +41,6 @@ namespace Task4
             return auxilary;
         }
 
-        //Return top element
         public T Top()
         {
             if (IsEmpty())
@@ -50,8 +48,7 @@ namespace Task4
             return array[currentSize - 1];
         }
 
-        //Stack is empty or not
-        private bool IsEmpty()
+        public bool IsEmpty()
         {
             return currentSize == 0;
         }

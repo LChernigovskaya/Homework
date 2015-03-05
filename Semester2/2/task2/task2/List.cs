@@ -1,9 +1,11 @@
 ﻿using System;
 
-namespace Task2
+namespace ListNamespace
 {
-    // List as a class
-    class List
+    /// <summary>
+    /// List as a class
+    /// </summary>
+    public class List
     {
         private ListElement head;
 
@@ -11,7 +13,9 @@ namespace Task2
 
         public int Size { get; private set; }
 
-        // Element of list
+        /// <summary>
+        /// Element of list
+        /// </summary>
         class ListElement
         {
             public ListElement(int value)
@@ -24,7 +28,9 @@ namespace Task2
             public ListElement Next { get; set; }
         }
 
-        // Show all element of list
+        /// <summary>
+        /// Show all element of list
+        /// </summary>
         public void PrintList()
         {
             ListElement auxilary = head;
@@ -36,7 +42,10 @@ namespace Task2
             Console.WriteLine();
         }
 
-        // Add new element of ascending
+        /// <summary>
+        /// Add new element of ascending
+        /// </summary>
+        /// <param name="value">element to be added in list</param>
         public void AddInOrder(int value)
         {
             ListElement newElement = new ListElement(value);
@@ -71,10 +80,26 @@ namespace Task2
             }
         }
 
-        // Remove element with a certain value
+        /// <summary>
+        /// The element is exist or not
+        /// </summary>
+        public bool Exists(int value)
+        {
+            if (IsEmpty())
+                return default(bool);
+            ListElement auxilary = head;
+            while (auxilary.Next != null && auxilary.Value != value)
+                auxilary = auxilary.Next;
+            return (auxilary.Value == value);
+        }
+
+        /// <summary>
+        /// Remove element with a certain value
+        /// </summary>
+        /// <param name="value">Element to be deleted</param>
         public void RemoveElement(int value)
         {
-            if (head == null)
+            if (IsEmpty())
                 return;
             if (head.Value == value)
             {
@@ -92,7 +117,14 @@ namespace Task2
             return;
         }
 
-        // Return value of the index
+        public bool IsEmpty()
+        {
+            return (head == null);
+        }
+
+        /// <summary>
+        /// Return value of the index
+        /// </summary>
         public int ReturnValue(int index)
         {
             ListElement auxilary = head;

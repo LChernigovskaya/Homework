@@ -26,13 +26,13 @@ namespace Task3
                 }
             }
             hash.PrintStatistic();
-            Console.WriteLine(hash.IsExist("it"));
+            Console.WriteLine(hash.Exists("it"));
             hash.PrintList("it");
             hash.RemoveElement("it");
-            Console.WriteLine(hash.IsExist("it"));
+            Console.WriteLine(hash.Exists("it"));
             hash.PrintList("it");
             hash.RemoveElement("feelings");
-            Console.WriteLine(hash.IsExist("feelings"));
+            Console.WriteLine(hash.Exists("feelings"));
         }
     }
 }

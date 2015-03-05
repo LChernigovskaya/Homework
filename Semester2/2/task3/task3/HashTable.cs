@@ -49,10 +49,10 @@ namespace Task3
             hashTable[index].RemoveElement(value);
         }
 
-        public bool IsExist(string value)
+        public bool Exists(string value)
         {
             int index = Hash(value);
-            return hashTable[index].IsExist(value);
+            return hashTable[index].Exists(value);
         }
 
         public void PrintList(string value)

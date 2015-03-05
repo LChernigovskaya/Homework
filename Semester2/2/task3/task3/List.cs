@@ -20,14 +20,14 @@ namespace Task3
         {
             public ListElement(string value)
             {
-                this.value = value;
-                this.next = null;
-                this.countRepetitions = 1;
+                this.Value = value;
+                this.Next = null;
+                this.CountRepetitions = 1;
             }
 
-            public string value { get; set; }
-            public ListElement next { get; set; }
-            public int countRepetitions { get; set; }
+            public string Value { get; set; }
+            public ListElement Next { get; set; }
+            public int CountRepetitions { get; set; }
         }
 
         /// <summary>
@@ -38,8 +38,8 @@ namespace Task3
             ListElement auxilary = head;
             while (auxilary != null)
             {
-                Console.Write(auxilary.value + " (" + auxilary.countRepetitions + "repetitions) ");
-                auxilary = auxilary.next;
+                Console.Write(auxilary.Value + " (" + auxilary.CountRepetitions + "repetitions) ");
+                auxilary = auxilary.Next;
             }
             Console.WriteLine();
         }
@@ -60,15 +60,15 @@ namespace Task3
             else
             {
                 ListElement current = head;
-                while (current.next != null && current.value != value)
-                    current = current.next;
-                if (current.value == value)
-                    current.countRepetitions++;
+                while (current.Next != null && current.Value != value)
+                    current = current.Next;
+                if (current.Value == value)
+                    current.CountRepetitions++;
                 else
                 {
                     Length++;
                     ListElement newElement = new ListElement(value);
-                    tail.next = newElement;
+                    tail.Next = newElement;
                     tail = newElement;
                 }
             }
@@ -82,27 +82,27 @@ namespace Task3
         {
             if (head == null)
                 return;
-            if (head.value == value)
+            if (head.Value == value)
             {
-                if (head.countRepetitions != 1)
-                    head.countRepetitions--;
+                if (head.CountRepetitions != 1)
+                    head.CountRepetitions--;
                 else
                 {
                     Length--;
-                    head = head.next;
+                    head = head.Next;
                 }
                 return;
             }
             ListElement auxilary = head;
-            while (auxilary.next != null && auxilary.next.value != value)
-                auxilary = auxilary.next;
-            if (auxilary.next == null)
+            while (auxilary.Next != null && auxilary.Next.Value != value)
+                auxilary = auxilary.Next;
+            if (auxilary.Next == null)
                 return;
-            if (auxilary.next.countRepetitions != 1)
-                auxilary.next.countRepetitions--;
+            if (auxilary.Next.CountRepetitions != 1)
+                auxilary.Next.CountRepetitions--;
             else
             {
-                auxilary.next = auxilary.next.next;
+                auxilary.Next = auxilary.Next.Next;
                 Length--;
             }
             return;
@@ -118,10 +118,10 @@ namespace Task3
             ListElement auxilary = head;
             while (index != 0)
             {
-                auxilary = auxilary.next;
+                auxilary = auxilary.Next;
                 index--;
             }
-            return auxilary.value;
+            return auxilary.Value;
         }
 
         /// <summary>
@@ -129,14 +129,14 @@ namespace Task3
         /// </summary>
         /// <param name="value">value to be checked</param>
         /// <returns></returns>
-        public bool IsExist(string value)
+        public bool Exists(string value)
         {
             if (head == null)
                 return default(bool);
             ListElement auxilary = head;
-            while (auxilary.next != null && auxilary.value != value)
-                auxilary = auxilary.next;
-            return (auxilary.value == value);
+            while (auxilary.Next != null && auxilary.Value != value)
+                auxilary = auxilary.Next;
+            return (auxilary.Value == value);
         }
     }
 }

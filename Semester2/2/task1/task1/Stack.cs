@@ -15,8 +15,8 @@ namespace Task1
 
         public int Pop()
         {
-            int value = head.value;
-            head = head.next;
+            int value = head.Value;
+            head = head.Next;
             return value;
         }
 
@@ -30,8 +30,8 @@ namespace Task1
             StackElement auxilary = head;
             while (auxilary != null)
             {
-                Console.Write(auxilary.value + " ");
-                auxilary = auxilary.next;
+                Console.Write(auxilary.Value + " ");
+                auxilary = auxilary.Next;
             }
             Console.WriteLine();
         }
@@ -40,14 +40,12 @@ namespace Task1
         {
             public StackElement(int value, StackElement next)
             {
-                this.value = value;
-                this.next = next;
+                this.Value = value;
+                this.Next = next;
             }
 
-            public int value { get; set; }
-            public StackElement next { get; set; }
+            public int Value { get; set; }
+            public StackElement Next { get; set; }
         }
-
     }
-    
 }

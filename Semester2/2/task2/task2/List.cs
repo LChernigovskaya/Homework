@@ -16,12 +16,12 @@ namespace Task2
         {
             public ListElement(int value)
             {
-                this.value = value;
-                this.next = null;
+                this.Value = value;
+                this.Next = null;
             }
 
-            public int value { get; set; }
-            public ListElement next { get; set; }
+            public int Value { get; set; }
+            public ListElement Next { get; set; }
         }
 
         // Show all element of list
@@ -30,8 +30,8 @@ namespace Task2
             ListElement auxilary = head;
             while (auxilary != null)
             {
-                Console.Write(auxilary.value + " ");
-                auxilary = auxilary.next;
+                Console.Write(auxilary.Value + " ");
+                auxilary = auxilary.Next;
             }
             Console.WriteLine();
         }
@@ -49,25 +49,25 @@ namespace Task2
             else
             {
                 Size++;
-                if (head.value >= value)
+                if (head.Value >= value)
                 {
-                    newElement.next = head;
+                    newElement.Next = head;
                     head = newElement;
                     return;
                 }
 
-                if (tail.value <= value)
+                if (tail.Value <= value)
                 {
-                    tail.next = newElement;
+                    tail.Next = newElement;
                     tail = newElement;
                     return;
                 }
 
                 ListElement current = head;
-                while (current.next.value < value)
-                    current = current.next;
-                newElement.next = current.next;
-                current.next = newElement;
+                while (current.Next.Value < value)
+                    current = current.Next;
+                newElement.Next = current.Next;
+                current.Next = newElement;
             }
         }
 
@@ -76,18 +76,18 @@ namespace Task2
         {
             if (head == null)
                 return;
-            if (head.value == value)
+            if (head.Value == value)
             {
-                head = head.next;
+                head = head.Next;
                 Size--;
                 return;
             }
             ListElement auxilary = head;
-            while (auxilary.next != null && auxilary.next.value != value)
-                auxilary = auxilary.next;
-            if (auxilary.next == null)
+            while (auxilary.Next != null && auxilary.Next.Value != value)
+                auxilary = auxilary.Next;
+            if (auxilary.Next == null)
                 return;
-            auxilary.next = auxilary.next.next;
+            auxilary.Next = auxilary.Next.Next;
             Size--;
             return;
         }
@@ -98,10 +98,10 @@ namespace Task2
             ListElement auxilary = head;
             while (index != 0)
             {
-                auxilary = auxilary.next;
+                auxilary = auxilary.Next;
                 index--;
             }
-            return auxilary.value;
+            return auxilary.Value;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Task3
         /// </summary>
         /// <param name="value">Word to be checked</param>
         /// <returns></returns>
-        bool IsExist(string value);
+        bool Exists(string value);
         
         /// <summary>
         /// Print list that contains the word

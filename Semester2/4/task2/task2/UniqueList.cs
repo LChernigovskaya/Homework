@@ -3,12 +3,19 @@ using ListNamespace;
 
 namespace UniqueListNamespace
 {
+    /// <summary>
+    /// List without repeating elements
+    /// </summary>
     public class UniqueList : List
     {
         public UniqueList()
         {
         }
 
+        /// <summary>
+        /// Add new element without repetition
+        /// </summary>
+        /// <param name="value">Element to be added</param>
         public override void AddInOrder(int value)
         {
             if (Exists(value))
@@ -17,6 +24,10 @@ namespace UniqueListNamespace
                 base.AddInOrder(value);
         }
 
+        /// <summary>
+        /// Remove element with a certain value
+        /// </summary>
+        /// <param name="value">Element to be deleted</param>
         public override void RemoveElement(int value)
         {
             if (!Exists(value))

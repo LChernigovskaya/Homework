@@ -99,7 +99,6 @@ namespace Task1
                 }
                 else throw new ExceptionTree("Incorrect expression");
             }
-            
         }
 
         /// <summary>

@@ -24,7 +24,5 @@ namespace Task1
                 stReader.Close();
             }
         }
-
-
     }
 }

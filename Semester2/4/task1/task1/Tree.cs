@@ -121,7 +121,9 @@ namespace Task1
             int index = 0;
             root = Put(massiveString, ref index);
             if (index + 1 < massiveString.Length)
+            {
                 throw new ExceptionTree("Incorrect expression: the number of arguments more than the number of operations");
+            }
         }
     }
 }

@@ -72,7 +72,9 @@ namespace Task1
         public override double Calculate()
         {
             if (RightChild.Value == "0")
+            {
                 throw new ExceptionTree("Devision by zero");
+            }
             return LeftChild.Calculate() / RightChild.Calculate();
         }
     }

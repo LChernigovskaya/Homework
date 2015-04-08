@@ -19,9 +19,13 @@ namespace UniqueListNamespace
         public override void AddInOrder(int value)
         {
             if (Exists(value))
+            {
                 throw new ExceptionAdd("This element already exists in list");
+            }
             else
+            {
                 base.AddInOrder(value);
+            }
         }
 
         /// <summary>
@@ -31,9 +35,13 @@ namespace UniqueListNamespace
         public override void RemoveElement(int value)
         {
             if (!Exists(value))
+            {
                 throw new ExceptionRemove("This element does not exist in list");
+            }
             else
+            {
                 base.RemoveElement(value);
+            }
         }
     }
 }

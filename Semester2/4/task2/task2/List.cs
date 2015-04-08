@@ -74,7 +74,9 @@ namespace ListNamespace
 
                 ListElement current = head;
                 while (current.Next.Value < value)
+                {
                     current = current.Next;
+                }
                 newElement.Next = current.Next;
                 current.Next = newElement;
             }
@@ -86,10 +88,14 @@ namespace ListNamespace
         public bool Exists(int value)
         {
             if (IsEmpty())
-                return default(bool);
+            {
+                return false;
+            }
             ListElement auxilary = head;
             while (auxilary.Next != null && auxilary.Value != value)
+            {
                 auxilary = auxilary.Next;
+            }
             return (auxilary.Value == value);
         }
 
@@ -100,18 +106,28 @@ namespace ListNamespace
         virtual public void RemoveElement(int value)
         {
             if (IsEmpty())
+            {
                 return;
+            }
+
             if (head.Value == value)
             {
                 head = head.Next;
                 Size--;
                 return;
             }
+
             ListElement auxilary = head;
             while (auxilary.Next != null && auxilary.Next.Value != value)
+            {
                 auxilary = auxilary.Next;
+            }
+
             if (auxilary.Next == null)
+            {
                 return;
+            }
+
             auxilary.Next = auxilary.Next.Next;
             Size--;
             return;

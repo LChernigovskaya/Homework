@@ -30,7 +30,7 @@ namespace TreeTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ExceptionTree))]
+        [ExpectedException(typeof(TreeException))]
         public void ExeptionAddTest()
         {
             stWriter.Write("+ 1 2 1");
@@ -52,7 +52,7 @@ namespace TreeTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ExceptionTree))]
+        [ExpectedException(typeof(TreeException))]
         public void DevisionByZero()
         {
             stWriter.Write("/ 1 0");

@@ -15,7 +15,7 @@ namespace Task1
                 tree.PrintTree();
                 Console.WriteLine("Result = " + tree.Result());
             }
-            catch (ExceptionTree exception)
+            catch (TreeException exception)
             {
                 Console.WriteLine(exception.Message);
             }

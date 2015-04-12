@@ -7,17 +7,6 @@ namespace Task1
     /// </summary>
     abstract public class TreeElement
     {
-        public TreeElement(string value, TreeElement left, TreeElement right)
-        {
-            this.Value = value;
-            this.LeftChild = left;
-            this.RightChild = right;
-        }
-
-        public string Value { get; set; }
-        public TreeElement RightChild { get; set; }
-        public TreeElement LeftChild { get; set; }
-
         /// <summary>
         /// Calculate the expression
         /// </summary>
@@ -25,7 +14,7 @@ namespace Task1
         abstract public double Calculate();
 
         /// <summary>
-        /// Print the expression
+        /// Print the expression in a form: (operand operator operand)
         /// </summary>
         abstract public void Print();
     }

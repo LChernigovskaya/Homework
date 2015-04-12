@@ -6,13 +6,13 @@ namespace Task1
     /// Exception for parse tree
     /// </summary>
     [Serializable]
-    public class ExceptionTree : ApplicationException
+    public class TreeException : ApplicationException
     {
-        public ExceptionTree() 
+        public TreeException() 
         { 
         }
 
-        public ExceptionTree(string message) 
+        public TreeException(string message) 
             : base(message) 
         { 
         }

@@ -7,75 +7,29 @@ namespace Task1
     /// </summary>
     abstract public class Operation : TreeElement
     {
-        public Operation(string value, TreeElement left, TreeElement right)
-            : base(value, left, right)
+        public Operation(TreeElement left, TreeElement right)
         {
+            this.RightChild = right;
+            this.LeftChild = left;
         }
+
+        public TreeElement RightChild { get; set; }
+        public TreeElement LeftChild { get; set; }
 
         abstract override public double Calculate();
 
         /// <summary>
-        /// Print in a form: (operand operator operand)
+        /// Print a value of operation
         /// </summary>
+        abstract public void PrintValue();
+
         public override void Print()
         {
             Console.Write("(");
             LeftChild.Print();
-            Console.Write(Value);
+            PrintValue();
             RightChild.Print();
             Console.Write(")");
-        }
-    }
-
-    public class Addition : Operation
-    {
-        public Addition(string value, TreeElement left, TreeElement right)
-            : base(value, left, right)
-        { }
-
-        public override double Calculate()
-        {
-            return LeftChild.Calculate() + RightChild.Calculate();
-        }
-    }
-
-    public class Substraction : Operation
-    {
-        public Substraction(string value, TreeElement left, TreeElement right)
-            : base(value, left, right)
-        { }
-
-        public override double Calculate()
-        {
-            return LeftChild.Calculate() - RightChild.Calculate();
-        }
-    }
-
-    public class Multiplication : Operation
-    {
-        public Multiplication(string value, TreeElement left, TreeElement right)
-            : base(value, left, right)
-        { }
-
-        public override double Calculate()
-        {
-            return LeftChild.Calculate() * RightChild.Calculate();
-        }
-    }
-
-    public class Devision : Operation
-    {
-        public Devision(string value, TreeElement left, TreeElement right)
-            : base(value, left, right)
-        { }
-
-        public override double Calculate()
-        {
-            if (RightChild.Value == "0")
-            {
-                throw new ExceptionTree("Devision by zero");
-            }
-            return LeftChild.Calculate() / RightChild.Calculate();
         }
     }
 }

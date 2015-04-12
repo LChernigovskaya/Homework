@@ -3,13 +3,16 @@
 namespace Task1
 {
     /// <summary>
-    /// Operand
+    /// Class that provides operand
     /// </summary>
-    public class Value : TreeElement
+    public class Operand : TreeElement
     {
-        public Value(string value)        
-            : base(value, null, null)
-        { }
+        public Operand(string value)        
+        {
+            this.Value = value;
+        }
+
+        public string Value { get; set; }
         
         public override double Calculate()
         {

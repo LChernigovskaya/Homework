@@ -34,10 +34,18 @@ namespace Task1
         /// <summary>
         /// It is operand or not
         /// </summary>
-        public bool Number(string value)
+        private static bool Number(string value)
         {
             int res;
             return Int32.TryParse(value, out res);
+        }
+
+        /// <summary>
+        /// It is operation or not
+        /// </summary>
+        private static bool Operation(string value)
+        {
+            return (value == "+" || value == "-" || value == "*" || value == "/");
         }
 
         /// <summary>
@@ -49,57 +57,45 @@ namespace Task1
         public TreeElement Put(string[] massiveString, ref int index)
         {
             if (index >= massiveString.Length)
-                throw new ExceptionTree("Incorrect expression: the number of operations more than the number of arguments");
             {
-                if (massiveString[index] == "")
-                {
-                    index++;
-                    return Put(massiveString, ref index);
-                }
-
-                else if (massiveString[index] == "+")
-                {
-                    index++;
-                    TreeElement left = Put(massiveString, ref index);
-                    index++;
-                    TreeElement right = Put(massiveString, ref index);
-                    return new Addition("+", left, right);
-                }
-
-                else if (massiveString[index] == "-")
-                {
-                    index++;
-                    TreeElement left = Put(massiveString, ref index);
-                    index++;
-                    TreeElement right = Put(massiveString, ref index);
-                    return new Substraction("-", left, right);
-                }
-
-                else if (massiveString[index] == "*")
-                {
-                    index++;
-                    TreeElement left = Put(massiveString, ref index);
-                    index++;
-                    TreeElement right = Put(massiveString, ref index);
-                    return new Multiplication("*", left, right);
-                }
-
-                else if (massiveString[index] == "/")
-                {
-                    index++;
-                    TreeElement left = Put(massiveString, ref index);
-                    index++;
-                    TreeElement right = Put(massiveString, ref index);
-                    return new Devision("/", left, right);
-                }
-
-                else if (Number(massiveString[index]))
-                {
-                    return new Value(massiveString[index]);
-                }
-                else throw new ExceptionTree("Incorrect expression");
+                throw new TreeException("Incorrect expression: the number of operations more than the number of arguments");
             }
-            
+
+            else if (massiveString[index] == "")
+            {
+                index++;
+                return Put(massiveString, ref index);
+            }
+
+            else if (Operation(massiveString[index]))
+            {
+                string value = massiveString[index];
+                index++;
+                TreeElement left = Put(massiveString, ref index);
+                index++;
+                TreeElement right = Put(massiveString, ref index);
+
+                switch (value)
+                {
+                    case "+":
+                        return new Addition(left, right);
+                    case "-":
+                        return new Substraction(left, right);
+                    case "*":
+                        return new Multiplication(left, right);
+                    case "/":
+                        return new Division(left, right);
+                }
+
+                return null;
+            }
+
+            else if (Number(massiveString[index]))
+            {
+                return new Operand(massiveString[index]);
+            }
+
+            else throw new TreeException("Incorrect expression");
         }
 
         /// <summary>
@@ -122,7 +118,7 @@ namespace Task1
             root = Put(massiveString, ref index);
             if (index + 1 < massiveString.Length)
             {
-                throw new ExceptionTree("Incorrect expression: the number of arguments more than the number of operations");
+                throw new TreeException("Incorrect expression: the number of arguments more than the number of operations");
             }
         }
     }

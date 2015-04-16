@@ -7,6 +7,11 @@ namespace StackNamespace
     {
         private StackElement head;
 
+        public Stack()
+        {
+            head = null;
+        }
+
         public void Push(T value)
         {
             StackElement newElement = new StackElement(value, head);

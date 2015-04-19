@@ -12,12 +12,20 @@ namespace StackNamespace
             head = null;
         }
 
+        /// <summary>
+        /// Push element to the stack
+        /// </summary>
+        /// <param name="value">Element to be pushed</param>
         public void Push(T value)
         {
             StackElement newElement = new StackElement(value, head);
             head = newElement;
         }
 
+        /// <summary>
+        /// Remove elment from the stack
+        /// </summary>
+        /// <returns>Value of the removed element</returns>
         public T Pop()
         {
             if (IsEmpty())
@@ -29,11 +37,18 @@ namespace StackNamespace
             return value;
         }
 
+        /// <summary>
+        /// Stack is empty or not
+        /// </summary>
+        /// <returns></returns>
         public bool IsEmpty()
         {
             return (head == null);
         }
 
+        /// <summary>
+        /// Print all elements of the stack
+        /// </summary>
         public void PrintStack()
         {
             StackElement auxilary = head;
@@ -45,6 +60,9 @@ namespace StackNamespace
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Element of thee stack
+        /// </summary>
         private class StackElement
         {
             public StackElement(T value, StackElement next)

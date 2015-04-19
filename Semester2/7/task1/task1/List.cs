@@ -5,13 +5,11 @@ using System.Collections;
 namespace ListNamespace
 {
     /// <summary>
-    /// List as a class
+    /// List
     /// </summary>
-    public class MyList<T> : IEnumerable, IEnumerator
+    public class MyList<T> : IEnumerable
     {
         private ListElement head;
-
-        private int position = -1;
 
         public int Length { get; private set; }
         
@@ -40,7 +38,6 @@ namespace ListNamespace
             {
                 result += element.Value.ToString() + " ";
             }
-            Reset();
             return result;
         }
 
@@ -65,7 +62,10 @@ namespace ListNamespace
         public void AddToPosition(T value, int position)
         {
             if (position > Length)
+            {
                 throw new Exception("Number of elements less than position");
+            }
+
             if (position == 0)
             {
                 AddToHead(value);
@@ -97,7 +97,9 @@ namespace ListNamespace
         public void RemoveElement(T value)
         {
             if (!Exists(value))
+            {
                 throw new Exception("Such element doesn't exist already");
+            }
 
             if (Equals(head.Value, value))
             {
@@ -114,8 +116,6 @@ namespace ListNamespace
 
             auxilary.Next = auxilary.Next.Next;
             Length--;
-
-            return;
         }
 
         /// <summary>
@@ -142,7 +142,10 @@ namespace ListNamespace
         public bool Exists(T value)
         {
             if (head == null)
+            {
                 return false;
+            }
+
             ListElement auxilary = head;
             while (auxilary.Next != null && !Equals(auxilary.Value, value))
             {
@@ -152,27 +155,45 @@ namespace ListNamespace
         }
 
         /// <summary>
-        /// Reilized for IEnumerable and IEnumerator
+        /// Reilized for IEnumerable
         /// </summary>
         public IEnumerator GetEnumerator()
         {
-            return (IEnumerator)this;
+            return new ListEnumerator(this);
         }
 
-        public void Reset()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            position = -1;
+            return GetEnumerator();
         }
 
-        public object Current
+        /// <summary>
+        /// Realized for IEnumerator
+        /// </summary>
+        private class ListEnumerator : IEnumerator
         {
-            get { return (ElementInPosition(position)); }
-        }
+            private int position = -1;
+            private MyList<T> list;
 
-        public bool MoveNext()
-        {
-            position++;
-            return !(ElementInPosition(position) == null);
+            public ListEnumerator(MyList<T> myList)
+            {
+                list = myList;
+            }
+            public void Reset()
+            {
+                position = -1;
+            }
+
+            public object Current
+            {
+                get { return (list.ElementInPosition(position)); }
+            }
+
+            public bool MoveNext()
+            {
+                position++;
+                return !(list.ElementInPosition(position) == null);
+            }
         }
 
         /// <summary>

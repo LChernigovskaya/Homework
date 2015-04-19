@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace StackNamespace
 {
+    /// <summary>
+    /// Stack
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Stack<T>
     {
         private StackElement head;
@@ -61,7 +65,7 @@ namespace StackNamespace
         }
 
         /// <summary>
-        /// Element of thee stack
+        /// Element of the stack
         /// </summary>
         private class StackElement
         {

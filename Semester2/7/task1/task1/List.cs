@@ -175,6 +175,11 @@ namespace ListNamespace
             return !(ElementInPosition(position) == null);
         }
 
+        /// <summary>
+        /// Return element according to position
+        /// </summary>
+        /// <param name="position">Position</param>
+        /// <returns>Element which is in this position</returns>
         private ListElement ElementInPosition(int position)
         {
             var auxilary = head;

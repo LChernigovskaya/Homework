@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace ListNamespace
 {
     /// <summary>
     /// List as a class
     /// </summary>
-    public class MyList<T>
+    public class MyList<T> : IEnumerable, IEnumerator
     {
         private ListElement head;
+
+        private int position = -1;
 
         public int Length { get; private set; }
         
@@ -29,15 +33,15 @@ namespace ListNamespace
         /// <summary>
         /// Show all elements of list
         /// </summary>
-        public void PrintList()
+        public string PrintList()
         {
-            ListElement auxilary = head;
-            while (auxilary != null)
+            string result = null;
+            foreach (ListElement element in this)
             {
-                Console.Write(auxilary.Value);
-                auxilary = auxilary.Next;
+                result += element.Value.ToString() + " ";
             }
-            Console.WriteLine();
+            Reset();
+            return result;
         }
 
         /// <summary>
@@ -145,6 +149,38 @@ namespace ListNamespace
                 auxilary = auxilary.Next;
             }
             return (Equals(auxilary.Value, value));
+        }
+
+        /// <summary>
+        /// Reilized for IEnumerable and IEnumerator
+        /// </summary>
+        public IEnumerator GetEnumerator()
+        {
+            return (IEnumerator)this;
+        }
+
+        public void Reset()
+        {
+            position = -1;
+        }
+
+        public object Current
+        {
+            get { return (ElementInPosition(position)); }
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            return !(ElementInPosition(position) == null);
+        }
+
+        private ListElement ElementInPosition(int position)
+        {
+            var auxilary = head;
+            for (int i = 0; i < position && auxilary != null; i++)
+                auxilary = auxilary.Next;
+            return auxilary;
         }
     }
 }

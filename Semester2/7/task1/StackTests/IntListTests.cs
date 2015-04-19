@@ -91,6 +91,17 @@ namespace StackTests
         }
 
         [TestMethod]
+        public void RemoveTheSameElements()
+        {
+            list.AddToPosition(6, 0);
+            list.AddToPosition(7, 1);
+            list.AddToPosition(6, 2);
+            list.RemoveElement(6);
+            Assert.IsTrue(list.Exists(6));
+            Assert.AreEqual("7 6 ", list.PrintList());
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void RemoveFromEmptyList()
         {
@@ -103,6 +114,38 @@ namespace StackTests
         {
             list.AddToPosition(8, 0);
             list.RemoveElement(9);
+        }
+
+        [TestMethod]
+        public void PrintTest()
+        {
+            list.AddToHead(9);
+            list.AddToHead(0);
+            list.AddToHead(89);
+            list.AddToHead(5);
+            Assert.AreEqual("5 89 0 9 ", list.PrintList());
+        }
+
+        [TestMethod]
+        public void PrintTwoLinesTest()
+        {
+            list.AddToHead(0);
+            list.AddToHead(87);
+            Assert.AreEqual("87 0 ", list.PrintList());
+            list.AddToHead(8);
+            list.AddToHead(76);
+            Assert.AreEqual("76 8 87 0 ", list.PrintList());
+        }
+
+        [TestMethod]
+        public void PrintWithRemoveTest()
+        {
+            list.AddToPosition(7, 0);
+            list.AddToPosition(8, 0);
+            list.AddToPosition(6, 1);
+            Assert.AreEqual("8 6 7 ", list.PrintList());
+            list.RemoveElement(6);
+            Assert.AreEqual("8 7 ", list.PrintList());
         }
     }
 }

@@ -1,18 +1,29 @@
-﻿namespace HashTableTests
-{
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using HashNamespace;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HashNamespace;
 
+namespace HashTableTests
+{
     [TestClass]
-    public class HashSumTest
+    public class UserHashFunctionTest
     {
         private HashTable hash;
+
+        private int UserHashFunction(string inputString, int maxSize)
+        {
+            int hashf = 0;
+            int length = inputString.Length;
+
+            for (int i = 0; i < length; i++)
+                hashf += inputString[i];
+
+            return hashf % maxSize;
+        }
 
         [TestInitialize]
         public void Initialize()
         {
-            hash = new HashFunctionSum(97);
+            hash = new HashTable(97, UserHashFunction);
         }
 
         [TestMethod]

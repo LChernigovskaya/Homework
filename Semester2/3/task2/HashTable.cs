@@ -5,8 +5,14 @@ namespace HashNamespace
     /// <summary>
     /// Implementation of the interface of hash-table
     /// </summary>
-    public abstract class HashTable : InterfaceHashTable
+    public class HashTable : InterfaceHashTable
     {
+        public delegate int HashFunction(string inputString, int maxSize);
+
+        private int maxSize;
+        private List[] hashTable;
+        private HashFunction hashFunction = HashFunctionPolynom;
+
         public HashTable(int maxSize)
         {
             this.maxSize = maxSize;
@@ -15,37 +21,49 @@ namespace HashNamespace
                 hashTable[i] = new List();
         }
 
-        protected int maxSize;
-        private List[] hashTable;
+        public HashTable(int maxSize, HashFunction userHashFunction) : this(maxSize)
+        {
+            hashFunction = userHashFunction;
+        }
 
         /// <summary>
-        /// hash function
+        /// Hash function
         /// </summary>
-        /// <param name="inputString"></param>
-        /// <returns>Index of input string in hash table</returns>
-        public abstract int HashFunction(string inputString);
+        private static int HashFunctionPolynom(string inputString, int maxSize)
+        {
+            int primeNumber = 67;
+            int degree = 1;
+            int length = inputString.Length;
+            int result = 0;
+            for (int i = 0; i < length; i++)
+            {
+                result = ((inputString[i] * degree) % maxSize + result) % maxSize;
+                degree = (degree * primeNumber) % maxSize;
+            }
+            return result;
+        }
 
         public void AddElement(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             hashTable[index].Add(value);
         }
 
         public void RemoveElement(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             hashTable[index].RemoveElement(value);
         }
 
         public bool IsExist(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             return hashTable[index].IsExist(value);
         }
 
         public void PrintList(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             hashTable[index].PrintList();
         }
 

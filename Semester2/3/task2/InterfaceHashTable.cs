@@ -2,6 +2,9 @@
 
 namespace HashNamespace
 {
+    /// <summary>
+    /// Hash table for strings
+    /// </summary>
     interface InterfaceHashTable
     {
         /// <summary>

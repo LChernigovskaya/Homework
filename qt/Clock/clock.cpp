@@ -103,6 +103,3 @@ void Clock::checkedGMT(bool check)
 {
     gmt = check;
 }
-
-
-

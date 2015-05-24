@@ -9,7 +9,7 @@ namespace Task1
     /// <summary>
     /// Class that provides division
     /// </summary>
-    public class Division : Operation
+    class Division : Operation
     {
         public Division(TreeElement left, TreeElement right)
             : base(left, right)

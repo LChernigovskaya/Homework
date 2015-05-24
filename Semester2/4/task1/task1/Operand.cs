@@ -5,7 +5,7 @@ namespace Task1
     /// <summary>
     /// Class that provides operand
     /// </summary>
-    public class Operand : TreeElement
+    class Operand : TreeElement
     {
         public Operand(string value)        
         {

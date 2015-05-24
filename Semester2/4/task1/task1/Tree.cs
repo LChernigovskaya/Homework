@@ -54,7 +54,7 @@ namespace Task1
         /// <param name="massiveString">Expression</param>
         /// <param name="index">Index of element of expression</param>
         /// <returns>Root of the tree</returns>
-        public TreeElement Put(string[] massiveString, ref int index)
+        private TreeElement Put(string[] massiveString, ref int index)
         {
             if (index >= massiveString.Length)
             {

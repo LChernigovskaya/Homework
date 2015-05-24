@@ -9,7 +9,7 @@ namespace Task1
     /// <summary>
     /// Class that provides addition
     /// </summary>
-    public class Addition : Operation
+    class Addition : Operation
     {
         public Addition(TreeElement left, TreeElement right)
             : base (left, right)

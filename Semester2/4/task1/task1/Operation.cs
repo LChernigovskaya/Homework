@@ -5,7 +5,7 @@ namespace Task1
     /// <summary>
     /// Operations: "+", "-", "*", "/"
     /// </summary>
-    abstract public class Operation : TreeElement
+    abstract class Operation : TreeElement
     {
         public Operation(TreeElement left, TreeElement right)
         {

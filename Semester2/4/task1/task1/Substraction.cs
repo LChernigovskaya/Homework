@@ -9,7 +9,7 @@ namespace Task1
     /// <summary>
     /// Class that provides substraction
     /// </summary>
-    public class Substraction : Operation
+    class Substraction : Operation
     {
         public Substraction(TreeElement left, TreeElement right)
             : base(left, right)

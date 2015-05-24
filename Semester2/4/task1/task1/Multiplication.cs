@@ -9,7 +9,7 @@ namespace Task1
     /// <summary>
     /// Class that provides multiplication
     /// </summary>
-    public class Multiplication : Operation
+    class Multiplication : Operation
     {
         public Multiplication(TreeElement left, TreeElement right)
             : base(left, right)

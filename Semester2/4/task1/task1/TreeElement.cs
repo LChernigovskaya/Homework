@@ -5,7 +5,7 @@ namespace Task1
     /// <summary>
     /// Element of tree: leaf or node
     /// </summary>
-    abstract public class TreeElement
+    abstract class TreeElement
     {
         /// <summary>
         /// Calculate the expression

@@ -7,23 +7,50 @@ namespace HashNamespace
     /// </summary>
     public class HashTable : InterfaceHashTable
     {
-        public delegate int HashFunction(string inputString, int maxSize);
-
         private int maxSize;
-        private List[] hashTable;
-        private HashFunction hashFunction = HashFunctionPolynom;
+        public List[] hashTable { get; set; }
+        public Func<string, int, int> hashFunction { get; set; }
 
         public HashTable(int maxSize)
         {
             this.maxSize = maxSize;
             this.hashTable = new List[maxSize];
             for (int i = 0; i < maxSize; i++)
+            {
                 hashTable[i] = new List();
+            }
+            this.hashFunction = HashFunctionPolynom;
         }
 
-        public HashTable(int maxSize, HashFunction userHashFunction) : this(maxSize)
+        public HashTable(int maxSize, Func<string, int, int> userHashFunction) : this(maxSize)
         {
             hashFunction = userHashFunction;
+        }
+
+        public void ChangeHashFunction(Func<string, int, int> userHashFunction)
+        {
+            this.hashFunction = userHashFunction;
+
+            List[] auxilary = new List[maxSize];
+            for (int i = 0; i < maxSize; i++)
+            {
+                auxilary[i] = new List();
+            }
+
+            for (int i = 0; i < maxSize; i++)
+            {
+                if (hashTable[i] != null)
+                {
+                    int length = hashTable[i].Length;
+                    for (int j = 0; j < length; j++)
+                    {
+                        string value = hashTable[i].ReturnValue(j);
+                        int index = userHashFunction(value, maxSize);
+                        auxilary[index].Add(value);
+                    }
+                }
+            }
+            hashTable = auxilary;
         }
 
         /// <summary>

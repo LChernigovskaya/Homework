@@ -8,6 +8,12 @@ namespace HashNamespace
     interface InterfaceHashTable
     {
         /// <summary>
+        /// Change hash function during operation
+        /// </summary>
+        /// <param name="userHashFunction">New hash function</param>
+        void ChangeHashFunction(Func<string, int, int> userHashFunction);
+
+        /// <summary>
         /// Add new word in hash table
         /// </summary>
         /// <param name="value">Input srtring</param>

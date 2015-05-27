@@ -174,11 +174,13 @@ namespace ListNamespace
         {
             private int position = -1;
             private MyList<T> list;
+            private ListElement current;
 
             public ListEnumerator(MyList<T> myList)
             {
                 list = myList;
             }
+
             public void Reset()
             {
                 position = -1;
@@ -186,27 +188,23 @@ namespace ListNamespace
 
             public object Current
             {
-                get { return (list.ElementInPosition(position)); }
+                get { return (current); }
             }
 
             public bool MoveNext()
             {
+                if (position == -1)
+                {
+                    current = list.head;
+                }
+                else
+                {
+                    current = current.Next;
+                }
                 position++;
-                return !(list.ElementInPosition(position) == null);
-            }
-        }
 
-        /// <summary>
-        /// Return element according to position
-        /// </summary>
-        /// <param name="position">Position</param>
-        /// <returns>Element which is in this position</returns>
-        private ListElement ElementInPosition(int position)
-        {
-            var auxilary = head;
-            for (int i = 0; i < position && auxilary != null; i++)
-                auxilary = auxilary.Next;
-            return auxilary;
+                return (current != null);
+            }
         }
     }
 }

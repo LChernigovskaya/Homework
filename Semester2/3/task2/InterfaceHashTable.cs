@@ -2,8 +2,17 @@
 
 namespace HashNamespace
 {
+    /// <summary>
+    /// Hash table for strings
+    /// </summary>
     interface InterfaceHashTable
     {
+        /// <summary>
+        /// Change hash function during operation
+        /// </summary>
+        /// <param name="userHashFunction">New hash function</param>
+        void ChangeHashFunction(Func<string, int, int> userHashFunction);
+
         /// <summary>
         /// Add new word in hash table
         /// </summary>

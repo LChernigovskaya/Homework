@@ -1,10 +1,9 @@
-﻿namespace HashTableTests
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using HashNamespace;
 
+namespace HashTableTests
 {
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using HashNamespace;
-
     [TestClass]
     public class HashPolynomTest
     {
@@ -13,7 +12,7 @@
         [TestInitialize]
         public void Initialize()
         {
-            hash = new HashFunctionPolynom(97);
+            hash = new HashTable(97);
         }
 
         [TestMethod]

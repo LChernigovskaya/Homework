@@ -5,47 +5,92 @@ namespace HashNamespace
     /// <summary>
     /// Implementation of the interface of hash-table
     /// </summary>
-    public abstract class HashTable : InterfaceHashTable
+    public class HashTable : InterfaceHashTable
     {
+        private int maxSize;
+        private List[] hashTable;
+        private Func<string, int, int> hashFunction;
+
         public HashTable(int maxSize)
         {
             this.maxSize = maxSize;
             this.hashTable = new List[maxSize];
             for (int i = 0; i < maxSize; i++)
+            {
                 hashTable[i] = new List();
+            }
+            this.hashFunction = HashFunctionPolynom;
         }
 
-        protected int maxSize;
-        private List[] hashTable;
+        public HashTable(int maxSize, Func<string, int, int> userHashFunction) : this(maxSize)
+        {
+            hashFunction = userHashFunction;
+        }
+
+        public void ChangeHashFunction(Func<string, int, int> userHashFunction)
+        {
+            this.hashFunction = userHashFunction;
+
+            List[] auxilary = new List[maxSize];
+            for (int i = 0; i < maxSize; i++)
+            {
+                auxilary[i] = new List();
+            }
+
+            for (int i = 0; i < maxSize; i++)
+            {
+                if (hashTable[i] != null)
+                {
+                    int length = hashTable[i].Length;
+                    for (int j = 0; j < length; j++)
+                    {
+                        string value = hashTable[i].ReturnValue(j);
+                        int index = userHashFunction(value, maxSize);
+                        auxilary[index].Add(value);
+                    }
+                }
+            }
+            hashTable = auxilary;
+        }
 
         /// <summary>
-        /// hash function
+        /// Hash function
         /// </summary>
-        /// <param name="inputString"></param>
-        /// <returns>Index of input string in hash table</returns>
-        public abstract int HashFunction(string inputString);
+        private static int HashFunctionPolynom(string inputString, int maxSize)
+        {
+            int primeNumber = 67;
+            int degree = 1;
+            int length = inputString.Length;
+            int result = 0;
+            for (int i = 0; i < length; i++)
+            {
+                result = ((inputString[i] * degree) % maxSize + result) % maxSize;
+                degree = (degree * primeNumber) % maxSize;
+            }
+            return result;
+        }
 
         public void AddElement(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             hashTable[index].Add(value);
         }
 
         public void RemoveElement(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             hashTable[index].RemoveElement(value);
         }
 
         public bool IsExist(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             return hashTable[index].IsExist(value);
         }
 
         public void PrintList(string value)
         {
-            int index = HashFunction(value);
+            int index = hashFunction(value, maxSize);
             hashTable[index].PrintList();
         }
 

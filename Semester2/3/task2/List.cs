@@ -5,7 +5,7 @@ namespace HashNamespace
     /// <summary>
     /// List as a class
     /// </summary>
-    class List
+    public class List
     {
         private ListElement head;
 

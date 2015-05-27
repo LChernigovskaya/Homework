@@ -188,7 +188,7 @@ namespace ListNamespace
 
             public object Current
             {
-                get { return (current); }
+                get { return current; }
             }
 
             public bool MoveNext()
@@ -203,7 +203,7 @@ namespace ListNamespace
                 }
                 position++;
 
-                return (current != null);
+                return current != null;
             }
         }
     }

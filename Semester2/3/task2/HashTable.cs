@@ -8,16 +8,16 @@ namespace HashNamespace
     public class HashTable : InterfaceHashTable
     {
         private int maxSize;
-        public List[] Table { get; set; }
+        private List[] hashTable;
         private Func<string, int, int> hashFunction;
 
         public HashTable(int maxSize)
         {
             this.maxSize = maxSize;
-            this.Table = new List[maxSize];
+            this.hashTable = new List[maxSize];
             for (int i = 0; i < maxSize; i++)
             {
-                Table[i] = new List();
+                hashTable[i] = new List();
             }
             this.hashFunction = HashFunctionPolynom;
         }
@@ -39,18 +39,18 @@ namespace HashNamespace
 
             for (int i = 0; i < maxSize; i++)
             {
-                if (Table[i] != null)
+                if (hashTable[i] != null)
                 {
-                    int length = Table[i].Length;
+                    int length = hashTable[i].Length;
                     for (int j = 0; j < length; j++)
                     {
-                        string value = Table[i].ReturnValue(j);
+                        string value = hashTable[i].ReturnValue(j);
                         int index = userHashFunction(value, maxSize);
                         auxilary[index].Add(value);
                     }
                 }
             }
-            Table = auxilary;
+            hashTable = auxilary;
         }
 
         /// <summary>
@@ -73,25 +73,25 @@ namespace HashNamespace
         public void AddElement(string value)
         {
             int index = hashFunction(value, maxSize);
-            Table[index].Add(value);
+            hashTable[index].Add(value);
         }
 
         public void RemoveElement(string value)
         {
             int index = hashFunction(value, maxSize);
-            Table[index].RemoveElement(value);
+            hashTable[index].RemoveElement(value);
         }
 
         public bool IsExist(string value)
         {
             int index = hashFunction(value, maxSize);
-            return Table[index].IsExist(value);
+            return hashTable[index].IsExist(value);
         }
 
         public void PrintList(string value)
         {
             int index = hashFunction(value, maxSize);
-            Table[index].PrintList();
+            hashTable[index].PrintList();
         }
 
         public void PrintStatistic()
@@ -102,10 +102,10 @@ namespace HashNamespace
             int maxLengthIndex = 0;
             for (int i = 0; i < maxSize; i++)
             {
-                numberOfElements = numberOfElements + Table[i].Length;
-                if (Table[i].Length == 0)
+                numberOfElements = numberOfElements + hashTable[i].Length;
+                if (hashTable[i].Length == 0)
                     emptyCells++;
-                if (Table[maxLengthIndex].Length < Table[i].Length)
+                if (hashTable[maxLengthIndex].Length < hashTable[i].Length)
                     maxLengthIndex = i;
             }
             average = (double)numberOfElements / (double)maxSize;
@@ -113,12 +113,12 @@ namespace HashNamespace
             Console.WriteLine("Average length: " + average);
             Console.WriteLine("Empty cells: " + emptyCells);
 
-            int maxLength = Table[maxLengthIndex].Length;
+            int maxLength = hashTable[maxLengthIndex].Length;
             Console.WriteLine("Max chains:");
             for (int i = 0; i < maxSize; i++)
-                if (Table[i].Length == maxLength)
+                if (hashTable[i].Length == maxLength)
                 {
-                    Table[i].PrintList();
+                    hashTable[i].PrintList();
                     Console.WriteLine();
                 }
         }

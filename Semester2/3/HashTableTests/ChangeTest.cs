@@ -32,8 +32,8 @@ namespace HashTableTests
             hash.AddElement("cut");
             hash.AddElement("tuc");
             hash.ChangeHashFunction(UserHashFunction);
-            Assert.AreEqual(hash.Table[41].ReturnValue(0), "cut");
-            Assert.AreEqual(hash.Table[41].ReturnValue(1), "tuc");
+            Assert.IsTrue(hash.IsExist("cut"));
+            Assert.IsTrue(hash.IsExist("tuc"));
         }
 
         [TestMethod]
@@ -41,7 +41,7 @@ namespace HashTableTests
         {
             hash.ChangeHashFunction(UserHashFunction);
             hash.AddElement("hello");
-            Assert.AreEqual(hash.Table[47].ReturnValue(0), "hello");
+            Assert.IsTrue(hash.IsExist("hello"));
         }
     }
 }

@@ -7,7 +7,7 @@ class StackCalc
 {
 public:
     ///Calculate the expression using a certain stack
-    double calculate(const QString expression, Stack *stack);
+    double calculate(const QString &expression, Stack *stack);
 
 private:
     ///This symbol is operation or not

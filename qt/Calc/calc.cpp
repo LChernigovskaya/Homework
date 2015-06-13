@@ -1,7 +1,7 @@
 #include "calc.h"
 #include "myException.h"
 
-double StackCalc::calculate(const QString expression, Stack *stack)
+double StackCalc::calculate(const QString &expression, Stack *stack)
 {
     int currentPosition = 0;
     int length = expression.length();

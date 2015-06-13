@@ -17,5 +17,3 @@ private:
     int mCurrent;
     double *mArray;
 };
-
-

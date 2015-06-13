@@ -7,11 +7,12 @@ class StackCalc
 {
 public:
     ///Calculate the expression using a certain stack
-    double calculate(QString expression, Stack *stack);
+    double calculate(const QString expression, Stack *stack);
 
 private:
     ///This symbol is operation or not
     bool isOperation(char value) const;
+
     ///Perform the operation
     double calculateResult(char operation, double number1, double number2);
 

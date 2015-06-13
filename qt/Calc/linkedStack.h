@@ -15,6 +15,6 @@ public:
 
 private:
     struct StackElement;
-    StackElement *head;
-    int currentSize;
+    StackElement *mHead;
+    int mCurrentSize;
 };

@@ -7,7 +7,6 @@ ArrayStack::ArrayStack(int maxSize) :
 {
 }
 
-
 void ArrayStack::push(double value)
 {
     mArray[mCurrent] = value;
@@ -20,9 +19,9 @@ double ArrayStack::pop()
     {
         throw MyException("Stack is empty");
     }
+
     mCurrent--;
-    double result = mArray[mCurrent];
-    return result;
+    return mArray[mCurrent + 1];
 }
 
 double ArrayStack::top() const

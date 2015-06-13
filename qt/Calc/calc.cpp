@@ -1,13 +1,13 @@
 #include "calc.h"
 #include "myException.h"
 
-double StackCalc::calculate(QString expression, Stack *stack)
+double StackCalc::calculate(const QString expression, Stack *stack)
 {
     int currentPosition = 0;
     int length = expression.length();
     while (currentPosition < length)
     {
-        if(isOperation(expression[currentPosition].toLatin1()))
+        if (isOperation(expression[currentPosition].toLatin1()))
         {
             char operation = expression[currentPosition].toLatin1();
             double number2 = stack->pop();
@@ -16,11 +16,10 @@ double StackCalc::calculate(QString expression, Stack *stack)
             stack->push(result);
             currentPosition++;
         }
-
         else
         {
             QString number = "";
-            while(currentPosition < length && expression[currentPosition] != ' ')
+            while (currentPosition < length && expression[currentPosition] != ' ')
             {
                 number += expression[currentPosition].toLatin1();
                 currentPosition++;

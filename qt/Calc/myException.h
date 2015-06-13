@@ -4,9 +4,8 @@ class MyException
 {
 public:
     MyException (const char *string);
-    const char *errowString();
+    const char *message();
 
 private:
-    const char *mString;
+    const char* const mString;
 };
-

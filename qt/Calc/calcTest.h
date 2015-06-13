@@ -51,12 +51,11 @@ private slots:
         }
         catch(MyException exc)
         {
-            QCOMPARE(exc.errowString(), "Division by zero");
+            QCOMPARE(exc.message(), "Division by zero");
         }
     }
 
 private:
     StackCalc *calcTest;
     Stack *stack;
-
 };

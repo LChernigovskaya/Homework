@@ -2,6 +2,7 @@
 #include "calcTest.h"
 #include "calc.h"
 #include "linkedStack.h"
+
 using namespace std;
 
 int main()
@@ -12,4 +13,3 @@ int main()
     CalcTest calcTest;
     QTest::qExec(&calcTest);
 }
-

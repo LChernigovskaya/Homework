@@ -2,8 +2,8 @@
 #include "myException.h"
 
 LinkedStack::LinkedStack() :
-    head(nullptr)
-  , currentSize(0)
+    mHead(nullptr)
+  , mCurrentSize(0)
 {
 }
 
@@ -16,10 +16,10 @@ struct LinkedStack::StackElement
 void LinkedStack::push(double value)
 {
     StackElement *auxilary = new StackElement;
-    auxilary->next = head;
+    auxilary->next = mHead;
     auxilary->value = value;
-    head = auxilary;
-    currentSize++;
+    mHead = auxilary;
+    mCurrentSize++;
 }
 
 double LinkedStack::pop()
@@ -29,31 +29,31 @@ double LinkedStack::pop()
         throw MyException("Stack is empty");
     }
 
-    currentSize--;
-    double result = head->value;
-    StackElement *auxilary = head;
-    head = head->next;
+    mCurrentSize--;
+    double result = mHead->value;
+    StackElement *auxilary = mHead;
+    mHead = mHead->next;
     delete auxilary;
     return result;
 }
 
 double LinkedStack::top() const
 {
-    return head->value;
+    return mHead->value;
 }
 
 int LinkedStack::size() const
 {
-    return currentSize;
+    return mCurrentSize;
 }
 
 LinkedStack::~LinkedStack()
 {
-    while(head != nullptr)
+    while(mHead != nullptr)
     {
-        StackElement *auxilary = head;
-        head = head->next;
+        StackElement *auxilary = mHead;
+        mHead = mHead->next;
         delete auxilary;
     }
-    delete head;
+    delete mHead;
 }

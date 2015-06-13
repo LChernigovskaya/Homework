@@ -113,7 +113,7 @@ private slots:
         }
         catch(MyException exc)
         {
-            QCOMPARE(exc.errowString(), "Stack is empty");
+            QCOMPARE(exc.message(), "Stack is empty");
         }
     }
 

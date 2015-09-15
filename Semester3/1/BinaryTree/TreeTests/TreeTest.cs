@@ -140,5 +140,66 @@ namespace TreeTests
             tree.Add(56);
             Assert.AreEqual(tree.PrintElementsOfTree(), "7 8 11 56 89 ");
         }
+
+        [TestMethod]
+        public void ForEachTest()
+        {
+            for (int i = 0; i < 10; i += 2)
+            {
+                tree.Add(i);
+            }
+
+            int j = 0;
+
+            foreach (int value in tree)
+            {
+                Assert.IsTrue(value == j);
+                j += 2;
+            }
+        }
+
+
+        [TestMethod]
+        public void EnumaratorTest()
+        {
+            for (int i = 0; i < 10; i += 2)
+            {
+                tree.Add(i);
+            }
+
+            var enumerator = tree.GetEnumerator();
+            string valueList = "";
+
+            while (enumerator.MoveNext())
+            {
+                valueList += enumerator.Current;
+            }
+            Assert.AreEqual(valueList, "02468");
+        }
+
+        [TestMethod]
+        public void EnumaratorResetTest()
+        {
+            for (int i = 0; i < 10; i += 2)
+            {
+                tree.Add(i);
+            }
+
+            var enumerator = tree.GetEnumerator();
+            string valueList = "";
+
+            while (enumerator.MoveNext())
+            {
+                valueList += enumerator.Current;
+            }
+
+            enumerator.Reset();
+
+            while (enumerator.MoveNext())
+            {
+                valueList += enumerator.Current;
+            }
+            Assert.AreEqual(valueList, "0246802468");
+        }
     }
 }

@@ -23,7 +23,6 @@ namespace Tree
             {
                 root = new TreeElement(value);
             }
-
             else
             {
                 root.AddNewElement(value);
@@ -36,7 +35,6 @@ namespace Tree
             {
                 throw new Exception("Tree is empty");
             }
-
             else
             {
                 root = root.RemoveElement(value);
@@ -54,16 +52,15 @@ namespace Tree
             {
                 return false;
             }
-
             return root.IsExistsElement(value);
         }
 
         public string PrintElementsOfTree()
         {
             string result = null;
-            foreach (T element in this)
+            foreach (T value in this)
             {
-                result += element.ToString() + " ";
+                result += value.ToString() + " ";
             }
             return result;
         }
@@ -97,20 +94,17 @@ namespace Tree
                     {
                         LeftChild = new TreeElement(newValue);
                     }
-
                     else
                     {
                         LeftChild.AddNewElement(newValue);
                     }
                 }
-
                 else
                 {
                     if (RightChild == null)
                     {
                         RightChild = new TreeElement(newValue);
                     }
-
                     else
                     {
                         RightChild.AddNewElement(newValue);
@@ -136,7 +130,6 @@ namespace Tree
                     {
                         return this.LeftChild;
                     }
-
                     else
                     {
                         TreeElement auxilary = this.RightChild;
@@ -148,7 +141,6 @@ namespace Tree
                         auxilary = auxilary.RightChild;
                     }
                 }
-
                 else if (this.Value.CompareTo(value) < 0)
                 {
                     if (this.RightChild != null)
@@ -156,7 +148,6 @@ namespace Tree
                         this.RightChild = this.RightChild.RemoveElement(value);
                     }
                 }
-
                 else
                 {
                     if (this.LeftChild != null)
@@ -174,7 +165,6 @@ namespace Tree
                 {
                     return true;
                 }
-
                 else if (this.Value.CompareTo(value) > 0)
                 {
                     if (this.LeftChild != null)
@@ -182,7 +172,6 @@ namespace Tree
                         return this.LeftChild.IsExistsElement(value);
                     }
                 }
-
                 else
                 {
                     if (this.RightChild != null)
@@ -213,15 +202,14 @@ namespace Tree
         /// </summary>
         private class TreeEnumerator : IEnumerator<T>
         {
-            private int position = -1;
-            private BinaryTree<T> tree;
+            private int position;
             private List<T> list;
 
             public TreeEnumerator(BinaryTree<T> currentTree)
             {
-                this.tree = currentTree;
+                this.position = -1;
                 this.list = new List<T>();
-                this.RewriteInList(tree.root);
+                this.RewriteInList(currentTree.root);
             }
 
             /// <summary>

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNetwork", "LocalNetWork\LocalNetwork.csproj", "{CE49B9DC-06A6-4042-BEBB-90E66FDB7F64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkTests", "NetWorkTests\NetworkTests.csproj", "{3A19BAF8-2F38-42EF-B4AC-082F50E0347B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE49B9DC-06A6-4042-BEBB-90E66FDB7F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE49B9DC-06A6-4042-BEBB-90E66FDB7F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE49B9DC-06A6-4042-BEBB-90E66FDB7F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE49B9DC-06A6-4042-BEBB-90E66FDB7F64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A19BAF8-2F38-42EF-B4AC-082F50E0347B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A19BAF8-2F38-42EF-B4AC-082F50E0347B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A19BAF8-2F38-42EF-B4AC-082F50E0347B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A19BAF8-2F38-42EF-B4AC-082F50E0347B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

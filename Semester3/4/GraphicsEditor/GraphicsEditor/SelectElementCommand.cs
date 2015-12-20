@@ -11,7 +11,7 @@ namespace GraphicsEditor
     {
         private MouseEventArgs e;
         private Shape newCurrentElement = null;
-        private Shape oldCurrentElement = null;
+        private Shape previousCurrentElement = null;
 
         public SelectElementCommand(MouseEventArgs e)
         {
@@ -25,14 +25,14 @@ namespace GraphicsEditor
 
         public override void UnExecute(Model model)
         {
-            model.SetCurrentElement(this.oldCurrentElement);
+            model.SetCurrentElement(this.previousCurrentElement);
         }
 
         public override bool IsReversible(Model model)
         {
-            this.oldCurrentElement = model.GetCurrentElement();
+            this.previousCurrentElement = model.GetCurrentElement();
             this.newCurrentElement = model.FindIntersection(this.e);
-            return (this.oldCurrentElement != this.newCurrentElement); 
+            return (this.previousCurrentElement != this.newCurrentElement); 
         }
     }
 }

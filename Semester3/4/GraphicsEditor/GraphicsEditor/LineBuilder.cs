@@ -10,28 +10,28 @@ namespace GraphicsEditor
 {
     class LineBuilder : ShapeBuilder
     {
-        private Line line = new Line();
+        private Point point1;
+        private Point point2;
 
-        public void Init(MouseEventArgs e)
+        public void Init(Point point)
         {
-            Point point = new Point(e.X, e.Y);
-            this.line.MouseDown(point);
+            this.point1 = point;
         }
 
-        public void Move(MouseEventArgs e)
+        public void Move(Point point)
         {
-            Point point = new Point(e.X, e.Y);
-            this.line.MouseMove(point);
+            this.point2 = point;
         }
 
         public void Draw(PaintEventArgs e)
         {
-            this.line.Draw(e);
+            Pen pen = new Pen(Color.Black);
+            e.Graphics.DrawLine(pen, this.point1, this.point2);
         }
 
         public Shape GetProduct()
         {
-            Shape shape = new Line(this.line.Point1, this.line.Point2);
+            Shape shape = new Line(this.point1, this.point2, this);
             return shape;
         }
     }

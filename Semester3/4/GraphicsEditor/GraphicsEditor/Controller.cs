@@ -29,7 +29,7 @@ namespace GraphicsEditor
 
         public void Redo()
         {
-            if (pointer != -1)
+            if (pointer > -1)
             {
                 this.undoRedo[pointer].UnExecute(this.model);
                 pointer--;
@@ -38,7 +38,7 @@ namespace GraphicsEditor
 
         public void Undo()
         {
-            if (pointer != this.undoRedo.Length - 1)
+            if (pointer < this.undoRedo.Length - 1)
             {
                 pointer++;
                 this.undoRedo[pointer].Execute(this.model);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace GraphicsEditor
 {
@@ -19,20 +20,20 @@ namespace GraphicsEditor
 
         public void SetCurrentElement(Shape element)
         {
-            if (this.currentElement != null)
-            {
-                this.currentElement.SetSelected(false);
-            }
+            this.UnselectCurrent();
+
             this.currentElement = element;
+
             if (this.currentElement != null)
             {
-                this.currentElement.SetSelected(true);
+                this.currentElement.Selected = true;
             }
         }
 
         public void AddElement(Shape element)
         {
             this.elements.Add(element);
+            this.currentElement = element;
         }
 
         public void RemoveCurrentElement()
@@ -64,7 +65,7 @@ namespace GraphicsEditor
         public Shape FindIntersection(MouseEventArgs e)
         {
             int i = elements.Count - 1;
-            while (i >= 0 && !(elements[i].Contain(e)))
+            while (i >= 0 && !(elements[i].Contain(new Point(e.X, e.Y))))
             {
                 i--;
             }
@@ -79,9 +80,17 @@ namespace GraphicsEditor
         {
             if (this.currentElement != null)
             {
-                this.currentElement.SetSelected(false);
+                this.currentElement.Selected = false;
             }
         }
 
+        public bool HasSelectedPoint()
+        {
+            if (this.currentElement != null)
+            {
+                return this.currentElement.SelectedPoint != default(Point);
+            }
+            return false;
+        }
     }
 }

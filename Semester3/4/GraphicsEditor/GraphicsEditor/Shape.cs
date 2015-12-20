@@ -8,12 +8,14 @@ using System.Windows.Forms;
 
 namespace GraphicsEditor
 {
-    interface Shape
+    abstract class Shape
     {
-        void SetSelected(bool selected);
-        void MouseDown(Point firstCoord);
-        void MouseMove(Point secondCoord);
-        void Draw(PaintEventArgs e);
-        bool Contain(MouseEventArgs e);
+        public bool Selected { get;  set; }
+        public ShapeBuilder Builder { get; protected set; }
+        public Point InitPoint { get; protected set; }
+        public Point SelectedPoint { get; protected set; }
+
+        public abstract void Draw(PaintEventArgs e);
+        public abstract bool Contain(Point point);
     }
 }

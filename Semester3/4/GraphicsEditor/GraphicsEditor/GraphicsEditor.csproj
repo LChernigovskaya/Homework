@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCommand.cs" />
     <Compile Include="Command.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="Editor.cs">
@@ -58,6 +59,8 @@
     <Compile Include="NullBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoveCommand.cs" />
+    <Compile Include="SelectElementCommand.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="ShapeBuilder.cs" />
     <EmbeddedResource Include="Editor.resx">

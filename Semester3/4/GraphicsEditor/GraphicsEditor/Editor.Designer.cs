@@ -82,7 +82,6 @@
             // redo
             // 
             this.redo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.redo.Enabled = false;
             this.redo.Image = ((System.Drawing.Image)(resources.GetObject("redo.Image")));
             this.redo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redo.Name = "redo";
@@ -93,7 +92,6 @@
             // undo
             // 
             this.undo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.undo.Enabled = false;
             this.undo.Image = ((System.Drawing.Image)(resources.GetObject("undo.Image")));
             this.undo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undo.Name = "undo";
@@ -129,6 +127,7 @@
             this.removeElement.Name = "removeElement";
             this.removeElement.Size = new System.Drawing.Size(23, 28);
             this.removeElement.Text = "remove";
+            this.removeElement.Click += new System.EventHandler(this.removeElementClick);
             // 
             // textBox1
             // 

@@ -13,15 +13,17 @@ namespace GraphicsEditor
     public partial class Editor : Form
     {
         private ShapeBuilder builder = new NullBuilder();
-        private Model model = new Model();
-        private Controller controller = new Controller();
-        private Line line = new Line();
+        private Model model;
+        private Controller controller;
         private bool mouseDown = false;
+        private bool mouseMove = false;
         private bool cursorSelected = false;
         Pen pen = new Pen(Color.Black, 4);
 
         public Editor()
         {
+            this.model = new Model();
+            this.controller = new Controller(this.model);
             InitializeComponent();
         }
 
@@ -35,26 +37,28 @@ namespace GraphicsEditor
             }
             else
             {
-                model.FindIntersection(e, this.textBox1);
+                Command select = new SelectElementCommand(e);
+                this.controller.AddNewCommand(select);
                 pictureBox1.Invalidate();
             }
         }
 
         private void pictureBox1MouseMove(object sender, MouseEventArgs e)
         {
-            if (!cursorSelected)
+            if (!cursorSelected && this.mouseDown)
             {
-                if (this.mouseDown == true)
-                {
-                    this.builder.Move(e);
-                    pictureBox1.Invalidate();
-                }
+                this.builder.Move(e);
+                pictureBox1.Invalidate();
+                this.mouseMove = true;
             }
         }
 
         private void pictureBox1Paint(object sender, PaintEventArgs e)
         {
-            this.builder.Draw(e);
+            if (this.mouseMove)
+            {
+                this.builder.Draw(e);
+            }
             this.model.Draw(e);
         }
 
@@ -65,20 +69,24 @@ namespace GraphicsEditor
                 Shape newShape = this.builder.GetProduct();
                 if (newShape != null)
                 {
-                    this.model.AddElement(newShape);
+                    Command addNewShape = new AddCommand(newShape);
+                    this.controller.AddNewCommand(addNewShape);
                 }
                 this.mouseDown = false;
+                this.mouseMove = false;
             }
         }
 
         private void redoClick(object sender, EventArgs e)
         {
-            //controller.Redo();
+            controller.Redo();
+            pictureBox1.Invalidate();
         }
 
         private void undoClick(object sender, EventArgs e)
         {
-            //controller.Undo();
+            controller.Undo();
+            pictureBox1.Invalidate();
         }
 
         private void addLineClick(object sender, EventArgs e)
@@ -94,6 +102,13 @@ namespace GraphicsEditor
             this.cursorSelected = true;
             addLine.BackColor = Color.Empty;
             cursor.BackColor = Color.Gray;
+        }
+
+        private void removeElementClick(object sender, EventArgs e)
+        {
+            Command removeElement = new RemoveCommand();
+            this.controller.AddNewCommand(removeElement);
+            pictureBox1.Invalidate();
         }
     }
 }

@@ -7,43 +7,42 @@ using System.Threading.Tasks;
 namespace GraphicsEditor
 {
     class Controller
-    {/*
-        private Editor editor;
-        private List<Command> undoRedo = new List<Command>();
+    {
+        private Command[] undoRedo = new Command[1000];
         private int pointer = -1;
+        private Model model;
+
+        public Controller(Model model)
+        {
+            this.model = model;
+        }
 
         public void AddNewCommand(Command command)
         {
-            this.undoRedo.Add(command);
-            editor.redo.Enabled = true;
+            if (command.IsReversible(this.model))
+            {
+                this.pointer++;
+                this.undoRedo[pointer] = command;
+                command.Execute(this.model);
+            }
         }
 
         public void Redo()
         {
-            this.undoRedo[pointer].UnExecute();
-            pointer--;
-            if (pointer == -1)
+            if (pointer != -1)
             {
-                editor.redo.Enabled = false;
-            }
-            if (!editor.undo.Enabled)
-            {
-                editor.undo.Enabled = true;
+                this.undoRedo[pointer].UnExecute(this.model);
+                pointer--;
             }
         }
 
         public void Undo()
         {
-            pointer++;
-            this.undoRedo[pointer].Execute();
-            if (pointer == undoRedo.Count - 1)
+            if (pointer != this.undoRedo.Length - 1)
             {
-                editor.undo.Enabled = false;
+                pointer++;
+                this.undoRedo[pointer].Execute(this.model);
             }
-            if (!editor.redo.Enabled)
-            {
-                editor.redo.Enabled = true;
-            }
-        }*/
+        }
     }
 }

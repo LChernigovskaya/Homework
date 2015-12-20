@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace GraphicsEditor
 {
-    interface Command
+    abstract class Command
     {
-        void Execute();
-        void UnExecute();
+        public abstract void Execute(Model model);
+        public abstract void UnExecute(Model model);
+        public virtual bool IsReversible(Model model)
+        {
+            return true;
+        }
     }
 }

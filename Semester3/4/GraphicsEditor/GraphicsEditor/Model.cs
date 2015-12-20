@@ -12,9 +12,35 @@ namespace GraphicsEditor
         private List<Shape> elements = new List<Shape>();
         private Shape currentElement = null;
 
+        public Shape GetCurrentElement()
+        {
+            return this.currentElement;
+        }
+
+        public void SetCurrentElement(Shape element)
+        {
+            if (this.currentElement != null)
+            {
+                this.currentElement.SetSelected(false);
+            }
+            this.currentElement = element;
+            if (this.currentElement != null)
+            {
+                this.currentElement.SetSelected(true);
+            }
+        }
+
         public void AddElement(Shape element)
         {
             this.elements.Add(element);
+        }
+
+        public void RemoveCurrentElement()
+        {
+            if (this.currentElement != null)
+            {
+                this.RemoveElement(this.currentElement);
+            }
         }
 
         public void RemoveElement(Shape element)
@@ -35,17 +61,18 @@ namespace GraphicsEditor
             }
         }
 
-        public void FindIntersection(MouseEventArgs e, TextBox tb)
+        public Shape FindIntersection(MouseEventArgs e)
         {
             int i = elements.Count - 1;
-            while (i >= 0 && !(elements[i].Contain(e, tb)))
+            while (i >= 0 && !(elements[i].Contain(e)))
             {
                 i--;
             }
             if (i >= 0)
             {
-                this.currentElement = elements[i];
+                return elements[i];
             }
+            return null;
         }
 
         public void UnselectCurrent()
@@ -55,5 +82,6 @@ namespace GraphicsEditor
                 this.currentElement.SetSelected(false);
             }
         }
+
     }
 }

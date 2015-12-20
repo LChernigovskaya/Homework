@@ -58,11 +58,11 @@ namespace GraphicsEditor
             e.Graphics.DrawEllipse(pen, new Rectangle(Point2.X - 2, Point2.Y - 2, 4, 4));
         }
 
-        public bool Contain(MouseEventArgs e, TextBox tb)
+        public bool Contain(MouseEventArgs e)
         {
             Debug.Indent();
             Debug.WriteLine("in contain");
-            if (MinDist(new Point(e.X, e.Y), tb) <= 15)
+            if (MinDist(new Point(e.X, e.Y)) <= 15)
             {
                 Debug.WriteLine("in first if");
                 this.selected = true;
@@ -71,7 +71,7 @@ namespace GraphicsEditor
             return false;
         }
 
-        private double MinDist(Point point, TextBox tb)
+        private double MinDist(Point point)
         {
             Point vector1 = new Point(point.X - Point1.X, point.Y - Point1.Y);
             Point vector2 = new Point(Point2.X - Point1.X, Point2.Y - Point1.Y);
@@ -91,7 +91,6 @@ namespace GraphicsEditor
                 {
                     double cosAlpha = ScalarProduct(vector3, vector4) / (Math.Sqrt(ScalarProduct(vector3, vector3)) * Math.Sqrt(ScalarProduct(vector4, vector4)));
                     double sinAlpha = Math.Sqrt(1 - cosAlpha * cosAlpha);
-                    tb.Text = cosAlpha.ToString() ;
                     return sinAlpha * Math.Sqrt(ScalarProduct(vector3, vector3));
                 }
             }

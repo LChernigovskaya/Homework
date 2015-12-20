@@ -14,6 +14,6 @@ namespace GraphicsEditor
         void MouseDown(Point firstCoord);
         void MouseMove(Point secondCoord);
         void Draw(PaintEventArgs e);
-        bool Contain(MouseEventArgs e, TextBox tb);
+        bool Contain(MouseEventArgs e);
     }
 }

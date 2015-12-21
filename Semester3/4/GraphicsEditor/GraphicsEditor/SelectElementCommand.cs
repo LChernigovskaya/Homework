@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace GraphicsEditor
 {
@@ -31,7 +32,7 @@ namespace GraphicsEditor
         public override bool IsReversible(Model model)
         {
             this.previousCurrentElement = model.GetCurrentElement();
-            this.newCurrentElement = model.FindIntersection(this.e);
+            this.newCurrentElement = model.FindIntersection(new Point(this.e.X, this.e.Y));
             return (this.previousCurrentElement != this.newCurrentElement); 
         }
     }

@@ -30,10 +30,16 @@ namespace GraphicsEditor
             }
         }
 
+        public void MoveCurrentElement(Shape newShape)
+        {
+            this.currentElement.Move(newShape);
+        }
+
         public void AddElement(Shape element)
         {
             this.elements.Add(element);
             this.currentElement = element;
+            this.currentElement.Visible = true;
         }
 
         public void RemoveCurrentElement()
@@ -49,11 +55,6 @@ namespace GraphicsEditor
             this.elements.Remove(element);
         }
 
-        public void RemoveAllElements()
-        {
-            this.elements.Clear();
-        }
-
         public void Draw(PaintEventArgs e)
         {
             foreach (var element in elements)
@@ -62,10 +63,10 @@ namespace GraphicsEditor
             }
         }
 
-        public Shape FindIntersection(MouseEventArgs e)
+        public Shape FindIntersection(Point point)
         {
             int i = elements.Count - 1;
-            while (i >= 0 && !(elements[i].Contain(new Point(e.X, e.Y))))
+            while (i >= 0 && !(elements[i].Contain(point)))
             {
                 i--;
             }

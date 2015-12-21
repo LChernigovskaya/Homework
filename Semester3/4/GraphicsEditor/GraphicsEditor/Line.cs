@@ -21,14 +21,23 @@ namespace GraphicsEditor
             this.point1 = firstCoord;
             this.point2 = secondCoord;
             this.Selected = false;
+            this.Visible = true;
         }
 
+        public override void Move(Shape shape)
+        {
+            
+            this.Visible = true;
+        }
         public override void Draw(PaintEventArgs e)
         {
-            e.Graphics.DrawLine(pen, point1, point2);
-            if (this.Selected)
+            if (Visible)
             {
-                DrawSelection(e);
+                e.Graphics.DrawLine(pen, point1, point2);
+                if (this.Selected)
+                {
+                    DrawSelection(e);
+                }
             }
         }
 

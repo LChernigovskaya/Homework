@@ -58,10 +58,9 @@ namespace GraphicsEditor
                     pictureBox1.Invalidate();
                     this.mouseMove = true;
                 }
-                if (model.HasSelectedPoint())
+                else if (model.HasSelectedPoint())
                 {
-                    Command remove = new RemoveCommand();
-                    controller.AddNewCommand(remove);
+                    this.model.GetCurrentElement().Visible = false;
                     this.builder.Move(new Point(e.X, e.Y));
                     pictureBox1.Invalidate();
                     this.mouseMove = true;
@@ -80,16 +79,24 @@ namespace GraphicsEditor
 
         private void pictureBox1MouseUp(object sender, MouseEventArgs e)
         {
-            if (!cursorSelected || model.HasSelectedPoint())
+            if (mouseMove)
             {
                 Shape newShape = this.builder.GetProduct();
-                if (newShape != null)
+                if (!cursorSelected)
                 {
-                    Command addNewShape = new AddCommand(newShape);
-                    this.controller.AddNewCommand(addNewShape);
-
-                    pictureBox1.Invalidate();
+                    if (newShape != null)
+                    {
+                        Command addNewShape = new AddCommand(newShape);
+                        this.controller.AddNewCommand(addNewShape);
+                    }
                 }
+
+                if (model.HasSelectedPoint())
+                {
+                    Command move = new MoveCommand(newShape);
+                    this.controller.AddNewCommand(move);
+                }
+                pictureBox1.Invalidate();
                 this.mouseDown = false;
                 this.mouseMove = false;
             }

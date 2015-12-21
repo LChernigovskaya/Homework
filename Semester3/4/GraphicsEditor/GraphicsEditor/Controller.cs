@@ -8,7 +8,7 @@ namespace GraphicsEditor
 {
     class Controller
     {
-        private Command[] undoRedo = new Command[1000];
+        private List<Command> undoRedo = new List<Command>();
         private int pointer = -1;
         private Model model;
 
@@ -22,7 +22,7 @@ namespace GraphicsEditor
             if (command.IsReversible(this.model))
             {
                 this.pointer++;
-                this.undoRedo[pointer] = command;
+                this.undoRedo.Insert(pointer, command);
                 command.Execute(this.model);
             }
         }
@@ -38,7 +38,7 @@ namespace GraphicsEditor
 
         public void Undo()
         {
-            if (pointer < this.undoRedo.Length - 1)
+            if (pointer < this.undoRedo.Count - 1)
             {
                 pointer++;
                 this.undoRedo[pointer].Execute(this.model);

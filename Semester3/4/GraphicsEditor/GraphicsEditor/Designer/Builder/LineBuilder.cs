@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace GraphicsEditor
 {
+    /// <summary>
+    /// Builder for line
+    /// </summary>
     class LineBuilder : ShapeBuilder
     {
         private Point point1;
@@ -20,14 +23,10 @@ namespace GraphicsEditor
 
         public void Draw(PaintEventArgs e)
         {
-            Pen pen = new Pen(Color.Black);
-            e.Graphics.DrawLine(pen, this.point1, this.point2);
+            e.Graphics.DrawLine(new Pen(Color.Black), this.point1, this.point2);
         }
 
-        public Shape GetProduct()
-        {
-            Shape shape = new Line(this.point1, this.point2, this);
-            return shape;
-        }
+        public Shape GetProduct() => new Line(this.point1, this.point2, this);
+
     }
 }

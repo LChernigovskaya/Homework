@@ -1,12 +1,15 @@
 ﻿namespace GraphicsEditor
 {
     /// <summary>
-    /// Add new shape in model
+    /// Adds a new shape
     /// </summary>
     class AddCommand : Command
     {
         private Shape shape;
 
+        /// <summary>
+        /// Inits a new shape
+        /// </summary>
         public AddCommand(Shape newShape)
         {
             this.shape = newShape;
@@ -16,10 +19,7 @@
         {
             model.AddElement(this.shape);
         }
-
-        /// <summary>
-        /// Remove added element
-        /// </summary>
+        
         public override void Unexecute(Model model)
         {
             model.RemoveElement(this.shape);

@@ -12,11 +12,7 @@ namespace GraphicsEditor
         private List<Shape> elements = new List<Shape>();
         private Shape currentElement = null;
 
-        public Shape GetCurrentElement()
-        {
-            return this.currentElement;
-        }
-
+        public Shape GetCurrentElement() => this.currentElement;
 
         /// <summary>
         /// current element becomes unselect, and changes
@@ -99,5 +95,10 @@ namespace GraphicsEditor
             }
             return false;
         }
+
+        public ShapeBuilder GetCurrentElementBuilder() => this.currentElement.Builder;
+
+        public Point GetCurrentElementInitPoint() => this.currentElement.InitPoint;
+
     }
 }

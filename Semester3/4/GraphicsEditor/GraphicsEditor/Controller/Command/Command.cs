@@ -6,10 +6,12 @@
     abstract class Command
     {
         public abstract void Execute(Model model);
+
         public abstract void Unexecute(Model model);
-        public virtual bool Significant(Model model)
-        {
-            return true;
-        }
+
+        /// <summary>
+        /// Checks if the command contains significant information (for example, if user clicked on empty place)
+        /// </summary>
+        public virtual bool Significant(Model model) => true;
     }
 }

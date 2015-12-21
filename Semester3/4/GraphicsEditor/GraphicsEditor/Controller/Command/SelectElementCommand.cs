@@ -3,7 +3,7 @@
 namespace GraphicsEditor
 {
     /// <summary>
-    /// Changes selected shape
+    /// Changes selection of shape
     /// </summary>
     class SelectElementCommand : Command
     {
@@ -11,7 +11,7 @@ namespace GraphicsEditor
         private Shape newCurrentElement = null;
         private Shape previousCurrentElement = null;
 
-        /// <param name="point">pressed point</param>
+        /// <param name="point">Point on the scene</param>
         public SelectElementCommand(Point point)
         {
             this.point = point;
@@ -26,10 +26,11 @@ namespace GraphicsEditor
         {
             model.SetCurrentElement(this.previousCurrentElement);
         }
-
+        
         /// <summary>
-        /// Checkes shapes are equal or not
+        /// Checks if shape was clicked repeatedly
         /// </summary>
+        /// <param name="model"></param>
         /// <returns></returns>
         public override bool Significant(Model model)
         {

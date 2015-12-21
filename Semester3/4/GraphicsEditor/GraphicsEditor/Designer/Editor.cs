@@ -7,12 +7,13 @@ namespace GraphicsEditor
     public partial class Editor : Form
     {
         private ShapeBuilder builder = new NullBuilder();
+
         private Model model;
         private Controller controller;
+
         private bool mouseDown = false;
         private bool mouseMove = false;
         private bool cursorSelected = false;
-        Pen pen = new Pen(Color.Black, 4);
 
         public Editor()
         {
@@ -22,111 +23,115 @@ namespace GraphicsEditor
         }
 
         /// <summary>
-        /// If press not cursor -- draw new shape by builder
-        /// If press cursor -- new select command
-        /// If press end of shape -- shape return her builder and builder init by point of lenght, which won't move
+        /// If cursor isn't pressed - draw new shape by builder
+        /// If cursor is pressed - select shape
+        /// If press end of shape - builder is inited by this shape builder
         /// </summary>
-        private void pictureBoxMouseDown(object sender, MouseEventArgs e)
+        private void SceneMouseDown(object sender, MouseEventArgs e)
         {
             this.mouseDown = true;
             this.model.UnselectCurrent();
+
             if (!cursorSelected)
             {
                 this.builder.Init(new Point(e.X, e.Y));
             }
             else
             {
-                Command select = new SelectElementCommand(new Point(e.X, e.Y));
-                this.controller.Push(select);
+                Command selectCommand = new SelectElementCommand(new Point(e.X, e.Y));
+                this.controller.Handle(selectCommand);
+
                 if (model.HasSelectedPoint())
                 {
-                    this.builder = model.GetCurrentElement().Builder;
-                    this.builder.Init(model.GetCurrentElement().InitPoint);
+                    this.builder = model.GetCurrentElementBuilder();
+                    this.builder.Init(model.GetCurrentElementInitPoint());
                 }
-                pictureBox1.Invalidate();
+
+                scene.Invalidate();
             }
         }
 
         /// <summary>
-        /// If press not cursor -- builder draw shape
-        /// If press cursor and press end of shape -- current element - unvisible and builder draw
+        /// Builder draws a shape
+        /// If end of shape is pressed then current element is unvisible and builder draws new
         /// </summary>
-        private void pictureBoxMouseMove(object sender, MouseEventArgs e)
+        private void SceneMouseMove(object sender, MouseEventArgs e)
         {
             if (this.mouseDown)
             {
-                if (!cursorSelected)
+                if (!cursorSelected || (cursorSelected && model.HasSelectedPoint()))
                 {
                     this.builder.Move(new Point(e.X, e.Y));
-                    pictureBox1.Invalidate();
                     this.mouseMove = true;
                 }
-                else if (model.HasSelectedPoint())
+
+                if (cursorSelected && model.HasSelectedPoint())
                 {
                     this.model.GetCurrentElement().Visible = false;
-                    this.builder.Move(new Point(e.X, e.Y));
-                    pictureBox1.Invalidate();
-                    this.mouseMove = true;
                 }
+
+                scene.Invalidate();
             }
         }
 
         /// <summary>
-        /// builder draw new element and model draw all her elements
+        /// Builder draws a new element and model redraws all its elements
         /// </summary>
-        private void pictureBoxPaint(object sender, PaintEventArgs e)
+        private void scenePaint(object sender, PaintEventArgs e)
         {
             if (this.mouseMove)
             {
                 this.builder.Draw(e);
             }
+
             this.model.Draw(e);
         }
 
         /// <summary>
-        /// If mouse pressed and moved -- builder return product
-        /// If we drew -- create add command
-        /// If we moved current element -- create move command
+        /// If mouse was pressed and moved -- builder returns product
+        /// If user drew -- create add command
+        /// If user moved current element -- create move command
         /// </summary>
-        private void pictureBoxMouseUp(object sender, MouseEventArgs e)
+        private void sceneMouseUp(object sender, MouseEventArgs e)
         {
             if (mouseMove)
             {
                 Shape newShape = this.builder.GetProduct();
+
                 if (!cursorSelected)
                 {
                     if (newShape != null)
                     {
-                        Command addNewShape = new AddCommand(newShape);
-                        this.controller.Push(addNewShape);
+                        Command addCommand = new AddCommand(newShape);
+                        this.controller.Handle(addCommand);
                     }
                 }
-
-                if (model.HasSelectedPoint())
+                else if (model.HasSelectedPoint())
                 {
-                    Command move = new MoveCommand(newShape);
-                    this.controller.Push(move);
+                    Command moveCommand = new MoveCommand(newShape);
+                    this.controller.Handle(moveCommand);
                 }
-                pictureBox1.Invalidate();
+
                 this.mouseDown = false;
                 this.mouseMove = false;
+                scene.Invalidate();
             }
         }
         
         private void redoClick(object sender, EventArgs e)
         {
             controller.Redo();
-            pictureBox1.Invalidate();
+            scene.Invalidate();
         }
 
         private void undoClick(object sender, EventArgs e)
         {
             controller.Undo();
-            pictureBox1.Invalidate();
+            scene.Invalidate();
         }
 
         /// <summary>
-        /// builder initialize by new line builder
+        /// Builder is initialized by new line builder
         /// </summary>
         private void addLineClick(object sender, EventArgs e)
         {
@@ -144,13 +149,13 @@ namespace GraphicsEditor
         }
 
         /// <summary>
-        /// creates remove command
+        /// Creates remove command
         /// </summary>
         private void removeElementClick(object sender, EventArgs e)
         {
             Command removeElement = new RemoveCommand();
-            this.controller.Push(removeElement);
-            pictureBox1.Invalidate();
+            this.controller.Handle(removeElement);
+            scene.Invalidate();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace GraphicsEditor
                 }
             }
         }
-
+        
         private void DrawSelection(PaintEventArgs e)
         {
             e.Graphics.DrawEllipse(pen, new Rectangle(point1.X - 2, point1.Y - 2, 4, 4));
@@ -47,6 +47,10 @@ namespace GraphicsEditor
             return false;
         }
 
+        /// <summary>
+        /// returns min distance from point to line
+        /// if min distance is distance to end of line -- sets initPoint and selectedPoint
+        /// </summary>
         private double MinDist(Point point)
         {
             Point vector1 = new Point(point.X - point1.X, point.Y - point1.Y);
@@ -78,9 +82,9 @@ namespace GraphicsEditor
             }
         }
 
-        private double ScalarProduct(Point vector1, Point vector2)
-        {
-            return vector1.X * vector2.X + vector1.Y * vector2.Y;
-        }
+        /// <summary>
+        /// Count scalar product of two vectors
+        /// </summary>
+        private double ScalarProduct(Point vector1, Point vector2) => vector1.X * vector2.X + vector1.Y * vector2.Y;
     }
 }

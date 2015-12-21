@@ -3,11 +3,11 @@
 namespace GraphicsEditor
 {
     /// <summary>
-    /// Keeps list of commands
+    /// Operates with sequence of commands
     /// </summary>
     class Controller
     {
-        private List<Command> undoRedo = new List<Command>();
+        private List<Command> undoRedoList = new List<Command>();
         private int pointer = -1;
         private Model model;
 
@@ -17,39 +17,50 @@ namespace GraphicsEditor
         }
 
         /// <summary>
-        /// Add new command in list
+        /// Checks if the command isn't mock, adds it to sequence of command and executes it
         /// </summary>
-        public void Push(Command command)
+        /// <param name="command"></param>
+        public void Handle(Command command)
         {
             if (command.Significant(this.model))
             {
                 this.pointer++;
-                this.undoRedo.Insert(pointer, command);
+                this.undoRedoList.Insert(pointer, command);
                 command.Execute(this.model);
+
+                CleanListTail();
             }
         }
-
+        
         /// <summary>
-        /// Unexecute previous command
+        /// Cancels the last command
         /// </summary>
         public void Redo()
         {
             if (pointer > -1)
             {
-                this.undoRedo[pointer].Unexecute(this.model);
+                this.undoRedoList[pointer].Unexecute(this.model);
                 pointer--;
             }
         }
-
+        
         /// <summary>
-        /// Execute next command in list
+        /// Executes the next command
         /// </summary>
         public void Undo()
         {
-            if (pointer < this.undoRedo.Count)
+            if (pointer < this.undoRedoList.Count - 1)
             {
                 pointer++;
-                this.undoRedo[pointer].Execute(this.model);
+                this.undoRedoList[pointer].Execute(this.model);
+            }
+        }
+
+        private void CleanListTail()
+        {
+            for (int i = pointer + 1; i < undoRedoList.Count; i++)
+            {
+                undoRedoList.RemoveAt(i);
             }
         }
     }

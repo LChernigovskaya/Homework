@@ -16,9 +16,6 @@
             }
         }
 
-        /// <summary>
-        /// Adds to model removed element
-        /// </summary>
         public override void Unexecute(Model model)
         {
             model.AddElement(this.removedElement);

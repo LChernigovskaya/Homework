@@ -29,29 +29,28 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.scene = new System.Windows.Forms.PictureBox();
             this.toolBar = new System.Windows.Forms.ToolStrip();
             this.redo = new System.Windows.Forms.ToolStripButton();
             this.undo = new System.Windows.Forms.ToolStripButton();
             this.addLine = new System.Windows.Forms.ToolStripButton();
             this.cursor = new System.Windows.Forms.ToolStripButton();
             this.removeElement = new System.Windows.Forms.ToolStripButton();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scene)).BeginInit();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // scene
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(898, 404);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBoxPaint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxMouseUp);
+            this.scene.Location = new System.Drawing.Point(0, 34);
+            this.scene.Name = "scene";
+            this.scene.Size = new System.Drawing.Size(898, 404);
+            this.scene.TabIndex = 1;
+            this.scene.TabStop = false;
+            this.scene.Paint += new System.Windows.Forms.PaintEventHandler(this.scenePaint);
+            this.scene.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SceneMouseDown);
+            this.scene.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SceneMouseMove);
+            this.scene.MouseUp += new System.Windows.Forms.MouseEventHandler(this.sceneMouseUp);
             // 
             // toolBar
             // 
@@ -121,41 +120,31 @@
             this.removeElement.Text = "remove";
             this.removeElement.Click += new System.EventHandler(this.removeElementClick);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(194, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
-            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 436);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.toolBar);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.scene);
             this.Name = "Editor";
             this.Text = "Editor";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scene)).EndInit();
             this.toolBar.ResumeLayout(false);
             this.toolBar.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox scene;
         private System.Windows.Forms.ToolStrip toolBar;
         private System.Windows.Forms.ToolStripButton redo;
         private System.Windows.Forms.ToolStripButton undo;
         private System.Windows.Forms.ToolStripButton addLine;
         private System.Windows.Forms.ToolStripButton removeElement;
         private System.Windows.Forms.ToolStripButton cursor;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

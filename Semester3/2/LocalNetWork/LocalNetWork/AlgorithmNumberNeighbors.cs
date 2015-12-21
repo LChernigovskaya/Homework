@@ -23,19 +23,19 @@ namespace LocalNetwork
                             computers[i].InfectedNeighbors++;
                         }
                     }
-                    computers[i].probabilityOfInfection = computers[i].OS.ProbabilityOfInfection * computers[i].InfectedNeighbors;
+                    computers[i].ProbabilityOfInfection = computers[i].OS.ProbabilityOfInfection * computers[i].InfectedNeighbors;
                     
-                    if (computers[indexOfInfectingComp].probabilityOfInfection <= computers[i].probabilityOfInfection)
+                    if (computers[indexOfInfectingComp].ProbabilityOfInfection <= computers[i].ProbabilityOfInfection)
                     {
                         indexOfInfectingComp = i;
                     }
                 }
             }
-            if (computers[indexOfInfectingComp].probabilityOfInfection != 0.0)
+            if (computers[indexOfInfectingComp].ProbabilityOfInfection != 0.0)
             {
                 for (int i = 0; i < numberOfComputer; i++)
                 {
-                    if (computers[indexOfInfectingComp].probabilityOfInfection == computers[i].probabilityOfInfection)
+                    if (computers[indexOfInfectingComp].ProbabilityOfInfection == computers[i].ProbabilityOfInfection)
                     {
                         computers[i].IsInfected = true;
                         infectedComps.Add(i);

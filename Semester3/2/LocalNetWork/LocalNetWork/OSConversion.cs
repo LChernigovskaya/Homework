@@ -11,21 +11,16 @@ namespace LocalNetwork
     /// </summary>
     class OSConversion
     {
-        public OperationSystem os { get; private set; }
-
-        public OSConversion(string operationSystem)
+        public static OperationSystem Convert(string operationSystem)
         {
             switch (operationSystem)
             {
                 case ("linux"):
-                    os = new OSLinux();
-                    break;
+                    return new OSLinux();
                 case ("windows"):
-                    os = new OSWindows();
-                    break;
+                    return new OSWindows();
                 case ("mac"):
-                    os = new OSMac();
-                    break;
+                    return new OSMac();
                 default:
                     throw new Exception("operation system is uncorrect");
             }

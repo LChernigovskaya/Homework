@@ -25,8 +25,7 @@ namespace LocalNetwork
             this.computers = new Computer[numberOfComps];
             for (int i = 0; i < numberOfComps; i++)
             {
-                OSConversion osSwither = new OSConversion(operationSystemOfComps[i]);
-                computers[i] = new Computer(osSwither.os, infected[i]);
+                computers[i] = new Computer(OSConversion.Convert(operationSystemOfComps[i]), infected[i]);
             }
             this.network = new NetworkModel(numberOfComps, computers, matrix, algorithm);
         }

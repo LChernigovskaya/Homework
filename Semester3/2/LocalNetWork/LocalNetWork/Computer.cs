@@ -10,7 +10,7 @@
         /// number of neihbors which is infected
         /// </summary>
         public int InfectedNeighbors { get; set; }
-        public double probabilityOfInfection { get; set; }
+        public double ProbabilityOfInfection { get; set; }
         public OperationSystem OS { get; private set; }
 
         /// <summary>
@@ -21,7 +21,7 @@
         public Computer(OperationSystem os, bool isInfected)
         {
             this.OS = os;
-            this.probabilityOfInfection = 0.0;
+            this.ProbabilityOfInfection = 0.0;
             this.IsInfected = isInfected;
         }
     }

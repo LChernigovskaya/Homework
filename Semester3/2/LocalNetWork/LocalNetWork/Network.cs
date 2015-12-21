@@ -9,18 +9,16 @@ namespace LocalNetwork
         private NetworkModel network;
         private Computer[] computers;
         private Algorithm algorithm;
-        private int numberOfComps;
 
         /// <summary>
         /// constructor
         /// </summary>
-        /// <param name="numberOfComps">number of computers in the local network</param>
-        /// <param name="infected">massive where show comp is infested or not</param>
-        /// <param name="operationSystemOfComps">massive where show which OS the comp has</param>
+        /// <param name="infected">array where show comp is infested or not</param>
+        /// <param name="operationSystemOfComps">array where show which OS the comp has</param>
         /// <param name="matrix">adjacency matrix where show computer connection</param>
-        public Network(int numberOfComps, bool[] infected, string[] operationSystemOfComps, int[,] matrix)
+        public Network(bool[] infected, string[] operationSystemOfComps, int[,] matrix)
         {
-            this.numberOfComps = numberOfComps;
+            int numberOfComps = infected.Length;
             this.algorithm = new AlgorithmNumberNeighbors();
             this.computers = new Computer[numberOfComps];
             for (int i = 0; i < numberOfComps; i++)
@@ -46,7 +44,7 @@ namespace LocalNetwork
         {
             string state = "Infected: ";
             computers = network.NetworkState();
-            for (int i = 0; i < numberOfComps; i++)
+            for (int i = 0; i < computers.Length; i++)
             {
                 if (computers[i].IsInfected)
                 {

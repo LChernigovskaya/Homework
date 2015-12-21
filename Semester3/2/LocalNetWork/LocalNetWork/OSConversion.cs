@@ -22,7 +22,7 @@ namespace LocalNetwork
                 case ("mac"):
                     return new OSMac();
                 default:
-                    throw new Exception("operation system is uncorrect");
+                    throw new Exception("operation system is incorrect");
             }
         }
     }

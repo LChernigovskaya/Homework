@@ -4,6 +4,9 @@ using System.Windows.Forms;
 
 namespace GraphicsEditor
 {
+    /// <summary>
+    /// Keeps all elements
+    /// </summary>
     class Model
     {
         private List<Shape> elements = new List<Shape>();
@@ -14,6 +17,10 @@ namespace GraphicsEditor
             return this.currentElement;
         }
 
+
+        /// <summary>
+        /// current element becomes unselect, and changes
+        /// </summary>=
         public void SetCurrentElement(Shape element)
         {
             this.UnselectCurrent();
@@ -26,16 +33,12 @@ namespace GraphicsEditor
             }
         }
 
-        public void MoveCurrentElement(Shape newShape)
-        {
-            this.currentElement.Move(newShape);
-        }
-
         public void AddElement(Shape element)
         {
             this.elements.Add(element);
             this.currentElement = element;
             this.currentElement.Visible = true;
+            this.currentElement.Selected = true;
         }
 
         public void RemoveCurrentElement()
@@ -59,6 +62,10 @@ namespace GraphicsEditor
             }
         }
 
+        /// <summary>
+        /// If findes shape, that intersects with point, return it
+        /// else return null
+        /// </summary>
         public Shape FindIntersection(Point point)
         {
             int i = elements.Count - 1;
@@ -81,6 +88,9 @@ namespace GraphicsEditor
             }
         }
 
+        /// <summary>
+        /// Checks if end of the current element is pressed
+        /// </summary>
         public bool HasSelectedPoint()
         {
             if (this.currentElement != null)

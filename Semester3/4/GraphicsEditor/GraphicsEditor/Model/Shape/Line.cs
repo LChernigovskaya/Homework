@@ -18,12 +18,7 @@ namespace GraphicsEditor
             this.Selected = false;
             this.Visible = true;
         }
-
-        public override void Move(Shape shape)
-        {
-            
-            this.Visible = true;
-        }
+        
         public override void Draw(PaintEventArgs e)
         {
             if (Visible)

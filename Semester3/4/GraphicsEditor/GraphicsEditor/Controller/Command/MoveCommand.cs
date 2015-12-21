@@ -1,6 +1,8 @@
-﻿
-namespace GraphicsEditor
+﻿namespace GraphicsEditor
 {
+    /// <summary>
+    /// Responsible for moving shape
+    /// </summary>
     class MoveCommand : Command
     {
         private Shape newElement;
@@ -11,6 +13,9 @@ namespace GraphicsEditor
             this.newElement = newElement;
         }
 
+        /// <summary>
+        /// Keeps current element, removes it and adds new element
+        /// </summary>
         public override void Execute(Model model)
         {
             this.previousElement = model.GetCurrentElement();
@@ -18,7 +23,10 @@ namespace GraphicsEditor
             model.AddElement(newElement);
         }
 
-        public override void UnExecute(Model model)
+        /// <summary>
+        /// Removes added element and adds in model old element
+        /// </summary>
+        public override void Unexecute(Model model)
         {
             model.RemoveElement(newElement);
             model.AddElement(previousElement);

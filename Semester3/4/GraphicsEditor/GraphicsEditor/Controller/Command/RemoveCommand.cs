@@ -1,6 +1,8 @@
-﻿
-namespace GraphicsEditor
+﻿namespace GraphicsEditor
 {
+    /// <summary>
+    /// Removes current element; keeps it
+    /// </summary>
     class RemoveCommand : Command
     {
         private Shape removedElement = null;
@@ -14,7 +16,10 @@ namespace GraphicsEditor
             }
         }
 
-        public override void UnExecute(Model model)
+        /// <summary>
+        /// Adds to model removed element
+        /// </summary>
+        public override void Unexecute(Model model)
         {
             model.AddElement(this.removedElement);
         }

@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace GraphicsEditor
 {
+    /// <summary>
+    /// Null object for initialize null builder
+    /// </summary>
     class NullBuilder : ShapeBuilder
     {
         public void Init(Point point) { }

@@ -21,7 +21,12 @@ namespace GraphicsEditor
             InitializeComponent();
         }
 
-        private void pictureBox1MouseDown(object sender, MouseEventArgs e)
+        /// <summary>
+        /// If press not cursor -- draw new shape by builder
+        /// If press cursor -- new select command
+        /// If press end of shape -- shape return her builder and builder init by point of lenght, which won't move
+        /// </summary>
+        private void pictureBoxMouseDown(object sender, MouseEventArgs e)
         {
             this.mouseDown = true;
             this.model.UnselectCurrent();
@@ -31,8 +36,8 @@ namespace GraphicsEditor
             }
             else
             {
-                Command select = new SelectElementCommand(e);
-                this.controller.AddNewCommand(select);
+                Command select = new SelectElementCommand(new Point(e.X, e.Y));
+                this.controller.Push(select);
                 if (model.HasSelectedPoint())
                 {
                     this.builder = model.GetCurrentElement().Builder;
@@ -42,7 +47,11 @@ namespace GraphicsEditor
             }
         }
 
-        private void pictureBox1MouseMove(object sender, MouseEventArgs e)
+        /// <summary>
+        /// If press not cursor -- builder draw shape
+        /// If press cursor and press end of shape -- current element - unvisible and builder draw
+        /// </summary>
+        private void pictureBoxMouseMove(object sender, MouseEventArgs e)
         {
             if (this.mouseDown)
             {
@@ -62,7 +71,10 @@ namespace GraphicsEditor
             }
         }
 
-        private void pictureBox1Paint(object sender, PaintEventArgs e)
+        /// <summary>
+        /// builder draw new element and model draw all her elements
+        /// </summary>
+        private void pictureBoxPaint(object sender, PaintEventArgs e)
         {
             if (this.mouseMove)
             {
@@ -71,7 +83,12 @@ namespace GraphicsEditor
             this.model.Draw(e);
         }
 
-        private void pictureBox1MouseUp(object sender, MouseEventArgs e)
+        /// <summary>
+        /// If mouse pressed and moved -- builder return product
+        /// If we drew -- create add command
+        /// If we moved current element -- create move command
+        /// </summary>
+        private void pictureBoxMouseUp(object sender, MouseEventArgs e)
         {
             if (mouseMove)
             {
@@ -81,21 +98,21 @@ namespace GraphicsEditor
                     if (newShape != null)
                     {
                         Command addNewShape = new AddCommand(newShape);
-                        this.controller.AddNewCommand(addNewShape);
+                        this.controller.Push(addNewShape);
                     }
                 }
 
                 if (model.HasSelectedPoint())
                 {
                     Command move = new MoveCommand(newShape);
-                    this.controller.AddNewCommand(move);
+                    this.controller.Push(move);
                 }
                 pictureBox1.Invalidate();
                 this.mouseDown = false;
                 this.mouseMove = false;
             }
         }
-
+        
         private void redoClick(object sender, EventArgs e)
         {
             controller.Redo();
@@ -108,6 +125,9 @@ namespace GraphicsEditor
             pictureBox1.Invalidate();
         }
 
+        /// <summary>
+        /// builder initialize by new line builder
+        /// </summary>
         private void addLineClick(object sender, EventArgs e)
         {
             this.builder = new LineBuilder();
@@ -123,10 +143,13 @@ namespace GraphicsEditor
             cursor.BackColor = Color.Gray;
         }
 
+        /// <summary>
+        /// creates remove command
+        /// </summary>
         private void removeElementClick(object sender, EventArgs e)
         {
             Command removeElement = new RemoveCommand();
-            this.controller.AddNewCommand(removeElement);
+            this.controller.Push(removeElement);
             pictureBox1.Invalidate();
         }
     }

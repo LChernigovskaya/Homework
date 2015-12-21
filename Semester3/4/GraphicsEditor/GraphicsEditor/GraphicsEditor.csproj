@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\AddCommand.cs" />
-    <Compile Include="Controller\Command.cs" />
+    <Compile Include="Controller\Command\AddCommand.cs" />
+    <Compile Include="Controller\Command\Command.cs" />
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Designer\Editor.cs">
       <SubType>Form</SubType>
@@ -53,17 +53,17 @@
     <Compile Include="Designer\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Line.cs" />
-    <Compile Include="Designer\LineBuilder.cs" />
+    <Compile Include="Model\Shape\Line.cs" />
+    <Compile Include="Designer\Builder\LineBuilder.cs" />
     <Compile Include="Model\Model.cs" />
-    <Compile Include="Controller\MoveCommand.cs" />
-    <Compile Include="Designer\NullBuilder.cs" />
+    <Compile Include="Controller\Command\MoveCommand.cs" />
+    <Compile Include="Designer\Builder\NullBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controller\RemoveCommand.cs" />
-    <Compile Include="Controller\SelectElementCommand.cs" />
-    <Compile Include="Model\Shape.cs" />
-    <Compile Include="Designer\ShapeBuilder.cs" />
+    <Compile Include="Controller\Command\RemoveCommand.cs" />
+    <Compile Include="Controller\Command\SelectElementCommand.cs" />
+    <Compile Include="Model\Shape\Shape.cs" />
+    <Compile Include="Designer\Builder\ShapeBuilder.cs" />
     <EmbeddedResource Include="Designer\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
     </EmbeddedResource>

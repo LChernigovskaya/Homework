@@ -1,17 +1,20 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
 
 namespace GraphicsEditor
 {
+    /// <summary>
+    /// Changes selected shape
+    /// </summary>
     class SelectElementCommand : Command
     {
-        private MouseEventArgs e;
+        private Point point;
         private Shape newCurrentElement = null;
         private Shape previousCurrentElement = null;
 
-        public SelectElementCommand(MouseEventArgs e)
+        /// <param name="point">pressed point</param>
+        public SelectElementCommand(Point point)
         {
-            this.e = e;
+            this.point = point;
         }
 
         public override void Execute(Model model)
@@ -19,15 +22,19 @@ namespace GraphicsEditor
             model.SetCurrentElement(this.newCurrentElement);
         }
 
-        public override void UnExecute(Model model)
+        public override void Unexecute(Model model)
         {
             model.SetCurrentElement(this.previousCurrentElement);
         }
 
-        public override bool IsReversible(Model model)
+        /// <summary>
+        /// Checkes shapes are equal or not
+        /// </summary>
+        /// <returns></returns>
+        public override bool Significant(Model model)
         {
             this.previousCurrentElement = model.GetCurrentElement();
-            this.newCurrentElement = model.FindIntersection(new Point(this.e.X, this.e.Y));
+            this.newCurrentElement = model.FindIntersection(point);
             return (this.previousCurrentElement != this.newCurrentElement); 
         }
     }

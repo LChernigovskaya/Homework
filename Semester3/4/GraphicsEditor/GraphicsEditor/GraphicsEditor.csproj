@@ -44,27 +44,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCommand.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="Editor.cs">
+    <Compile Include="Controller\AddCommand.cs" />
+    <Compile Include="Controller\Command.cs" />
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Designer\Editor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Editor.Designer.cs">
+    <Compile Include="Designer\Editor.Designer.cs">
       <DependentUpon>Editor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Line.cs" />
-    <Compile Include="LineBuilder.cs" />
-    <Compile Include="Model.cs" />
-    <Compile Include="MoveCommand.cs" />
-    <Compile Include="NullBuilder.cs" />
+    <Compile Include="Model\Line.cs" />
+    <Compile Include="Designer\LineBuilder.cs" />
+    <Compile Include="Model\Model.cs" />
+    <Compile Include="Controller\MoveCommand.cs" />
+    <Compile Include="Designer\NullBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveCommand.cs" />
-    <Compile Include="SelectElementCommand.cs" />
-    <Compile Include="Shape.cs" />
-    <Compile Include="ShapeBuilder.cs" />
-    <EmbeddedResource Include="Editor.resx">
+    <Compile Include="Controller\RemoveCommand.cs" />
+    <Compile Include="Controller\SelectElementCommand.cs" />
+    <Compile Include="Model\Shape.cs" />
+    <Compile Include="Designer\ShapeBuilder.cs" />
+    <EmbeddedResource Include="Designer\Editor.resx">
       <DependentUpon>Editor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -76,7 +76,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -90,6 +89,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -15,7 +15,7 @@ namespace LocalNetwork
         /// <param name="infected">array where show comp is infested or not</param>
         /// <param name="operationSystemOfComps">array where show which OS the comp has</param>
         /// <param name="matrix">adjacency matrix where show computer connection</param>
-        public Network(bool[] infected, string[] operationSystemOfComps, int[,] matrix, ref Generator generator)
+        public Network(bool[] infected, string[] operationSystemOfComps, int[,] matrix, Generator generator)
         {
             int numberOfComps = infected.Length;
             this.computers = new Computer[numberOfComps];

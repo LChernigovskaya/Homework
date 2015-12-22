@@ -38,7 +38,7 @@ namespace LocalNetwork
         /// </summary>
         public void MakeStep()
         {
-            List<int> indexInfected = Algorithm.MakeInfection(this.computers, this.compsMatrix, ref this.generator);
+            List<int> indexInfected = Algorithm.MakeInfection(this.computers, this.compsMatrix, this.generator);
             foreach (var index in indexInfected)
             {
                 computers[index].IsInfected = true;

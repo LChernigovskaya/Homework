@@ -24,7 +24,7 @@ namespace NetworkTests
             bool[] infected = { true };
             string[] os = { "linux" };
             matrixOfComps = new int[,] { {1} };
-            network = new Network(infected, os, matrixOfComps, ref numberGenerator);
+            network = new Network(infected, os, matrixOfComps, numberGenerator);
             Assert.AreEqual(network.NetworkState(), "Infected: 1 ");
         }
         
@@ -34,7 +34,7 @@ namespace NetworkTests
             bool[] infected = {false, true};
             string[] os = {"linux", "windows"};
             matrixOfComps = new int[,] { {0, 1}, {1, 0} };
-            network = new Network(infected, os, matrixOfComps, ref numberGenerator);
+            network = new Network(infected, os, matrixOfComps, numberGenerator);
             Assert.AreEqual(network.NetworkState(), "Infected: 2 ");
         }
 
@@ -44,7 +44,7 @@ namespace NetworkTests
             bool[] infected = { false, true };
             string[] os = { "windows", "linux" };
             matrixOfComps = new int[,] { { 0, 1 }, { 1, 0 } };
-            network = new Network(infected, os, matrixOfComps, ref numberGenerator);
+            network = new Network(infected, os, matrixOfComps, numberGenerator);
             network.MakeStep();
             Assert.AreEqual(network.NetworkState(), "Infected: 1 2 ");
         }
@@ -55,7 +55,7 @@ namespace NetworkTests
             bool[] infected = { false, true, false };
             string[] os = { "linux", "windows", "mac" };
             matrixOfComps = new int[,] { { 0, 1, 0 }, { 1, 0, 1 }, {0, 1, 0} };
-            network = new Network(infected, os, matrixOfComps, ref numberGenerator);
+            network = new Network(infected, os, matrixOfComps, numberGenerator);
             Assert.AreEqual(network.NetworkState(), "Infected: 2 ");
             network.MakeStep();
             Assert.AreEqual(network.NetworkState(), "Infected: 2 3 ");
@@ -69,7 +69,7 @@ namespace NetworkTests
             bool[] infected = { false, false, true, false, false };
             string[] os = { "linux", "windows", "mac", "windows", "linux" };
             matrixOfComps = new int[,] { { 0, 1, 0, 0, 0 }, { 1, 0, 1, 0, 0 }, { 0, 1, 0, 1, 0}, {0, 0, 1, 0, 1}, {1, 0, 0, 1, 0} };
-            network = new Network(infected, os, matrixOfComps, ref numberGenerator);
+            network = new Network(infected, os, matrixOfComps, numberGenerator);
             Assert.AreEqual(network.NetworkState(), "Infected: 3 ");
             network.MakeStep();
             Assert.AreEqual(network.NetworkState(), "Infected: 2 3 4 ");

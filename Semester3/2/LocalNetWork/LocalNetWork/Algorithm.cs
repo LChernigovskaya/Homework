@@ -13,7 +13,7 @@ namespace LocalNetwork
         /// <param name="computers">the concrete computers</param>
         /// <param name="adjacencyMatrix">matrix, where computer connection</param>
         /// <returns>index of computers which will be infected</returns>
-        public static List<int> MakeInfection(Computer[] computers, int[,] adjacencyMatrix, ref Generator numberGenerator)
+        public static List<int> MakeInfection(Computer[] computers, int[,] adjacencyMatrix, Generator numberGenerator)
         {
             List<int> indexInfected = new List<int>();
             double number = numberGenerator.GetNumber();

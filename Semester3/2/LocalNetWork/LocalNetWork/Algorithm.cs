@@ -5,15 +5,33 @@ namespace LocalNetwork
     /// <summary>
     /// The algorithm where state of the local network change
     /// </summary>
-    interface Algorithm
+    static class Algorithm
     {
         /// <summary>
         /// How computers infect
         /// </summary>
-        /// <param name="numberOfComputer">number of the computers</param>
         /// <param name="computers">the concrete computers</param>
         /// <param name="adjacencyMatrix">matrix, where computer connection</param>
         /// <returns>index of computers which will be infected</returns>
-        List<int> MakeInfection(int numberOfComputer, Computer[] computers, int[,] adjacencyMatrix);
+        public static List<int> MakeInfection(Computer[] computers, int[,] adjacencyMatrix, ref Generator numberGenerator)
+        {
+            List<int> indexInfected = new List<int>();
+            double number = numberGenerator.GetNumber();
+            for (int i = 0; i < computers.Length; i++)
+            {
+                if (computers[i].IsInfected)
+                {
+                    for (int j = 0; j < computers.Length; j++)
+                    {
+                        if (adjacencyMatrix[i, j] == 1 && computers[j].TryInfect(number))
+                        {
+                            indexInfected.Add(j);
+                        }
+                    }
+                }
+            }
+
+            return indexInfected;
+        }
     }
 }

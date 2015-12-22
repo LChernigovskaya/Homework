@@ -7,10 +7,9 @@ namespace LocalNetwork
     /// </summary>
     class NetworkModel
     {
-        private int numberOfComputer;
         private Computer[] computers;
         private int[,] compsMatrix;
-        private Algorithm algorithm;
+        private Generator generator;
 
         /// <summary>
         /// constructor
@@ -18,13 +17,11 @@ namespace LocalNetwork
         /// <param name="numberOfComps">number of computers in the local network</param>
         /// <param name="comps">the concrete computers</param>
         /// <param name="matrix">adjacency matrix where show computer connection</param>
-        /// <param name="algorithm">the algorithm where state of the local network change</param>
-        public NetworkModel(int numberOfComps, Computer[] comps, int[,] matrix, Algorithm algorithm)
+        public NetworkModel(Computer[] comps, int[,] matrix, Generator numberGenerator)
         {
-            this.numberOfComputer = numberOfComps;
             this.computers = comps;
             this.compsMatrix = matrix;
-            this.algorithm = algorithm;
+            this.generator = numberGenerator;
         }
 
         /// <summary>
@@ -41,11 +38,10 @@ namespace LocalNetwork
         /// </summary>
         public void MakeStep()
         {
-            List<int> compsInfected = new List<int>();
-            compsInfected = algorithm.MakeInfection(this.numberOfComputer, this.computers, this.compsMatrix);
-            foreach (int element in compsInfected)
+            List<int> indexInfected = Algorithm.MakeInfection(this.computers, this.compsMatrix, ref this.generator);
+            foreach (var index in indexInfected)
             {
-                computers[element].IsInfected = true;
+                computers[index].IsInfected = true;
             }
         }
     }

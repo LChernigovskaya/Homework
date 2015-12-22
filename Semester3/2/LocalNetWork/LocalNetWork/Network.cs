@@ -8,7 +8,6 @@ namespace LocalNetwork
     {
         private NetworkModel network;
         private Computer[] computers;
-        private Algorithm algorithm;
 
         /// <summary>
         /// constructor
@@ -16,16 +15,15 @@ namespace LocalNetwork
         /// <param name="infected">array where show comp is infested or not</param>
         /// <param name="operationSystemOfComps">array where show which OS the comp has</param>
         /// <param name="matrix">adjacency matrix where show computer connection</param>
-        public Network(bool[] infected, string[] operationSystemOfComps, int[,] matrix)
+        public Network(bool[] infected, string[] operationSystemOfComps, int[,] matrix, ref Generator generator)
         {
             int numberOfComps = infected.Length;
-            this.algorithm = new AlgorithmNumberNeighbors();
             this.computers = new Computer[numberOfComps];
             for (int i = 0; i < numberOfComps; i++)
             {
                 computers[i] = new Computer(OSConversion.Convert(operationSystemOfComps[i]), infected[i]);
             }
-            this.network = new NetworkModel(numberOfComps, computers, matrix, algorithm);
+            this.network = new NetworkModel(computers, matrix, generator);
         }
 
         /// <summary>

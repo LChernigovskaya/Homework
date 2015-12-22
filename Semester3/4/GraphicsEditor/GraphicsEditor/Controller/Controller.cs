@@ -35,7 +35,7 @@ namespace GraphicsEditor
         /// <summary>
         /// Cancels the last command
         /// </summary>
-        public void Redo()
+        public void Undo()
         {
             if (pointer > -1)
             {
@@ -47,7 +47,7 @@ namespace GraphicsEditor
         /// <summary>
         /// Executes the next command
         /// </summary>
-        public void Undo()
+        public void Redo()
         {
             if (pointer < this.undoRedoList.Count - 1)
             {

@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
             this.scene = new System.Windows.Forms.PictureBox();
             this.toolBar = new System.Windows.Forms.ToolStrip();
-            this.redo = new System.Windows.Forms.ToolStripButton();
             this.undo = new System.Windows.Forms.ToolStripButton();
+            this.redo = new System.Windows.Forms.ToolStripButton();
             this.addLine = new System.Windows.Forms.ToolStripButton();
             this.cursor = new System.Windows.Forms.ToolStripButton();
             this.removeElement = new System.Windows.Forms.ToolStripButton();
@@ -57,8 +57,8 @@
             this.toolBar.AutoSize = false;
             this.toolBar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.redo,
             this.undo,
+            this.redo,
             this.addLine,
             this.cursor,
             this.removeElement});
@@ -70,16 +70,6 @@
             this.toolBar.Stretch = true;
             this.toolBar.TabIndex = 2;
             // 
-            // redo
-            // 
-            this.redo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.redo.Image = ((System.Drawing.Image)(resources.GetObject("redo.Image")));
-            this.redo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.redo.Name = "redo";
-            this.redo.Size = new System.Drawing.Size(23, 28);
-            this.redo.Text = "redo";
-            this.redo.Click += new System.EventHandler(this.redoClick);
-            // 
             // undo
             // 
             this.undo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -89,6 +79,16 @@
             this.undo.Size = new System.Drawing.Size(23, 28);
             this.undo.Text = "undo";
             this.undo.Click += new System.EventHandler(this.undoClick);
+            // 
+            // redo
+            // 
+            this.redo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.redo.Image = ((System.Drawing.Image)(resources.GetObject("redo.Image")));
+            this.redo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.redo.Name = "redo";
+            this.redo.Size = new System.Drawing.Size(23, 28);
+            this.redo.Text = "redo";
+            this.redo.Click += new System.EventHandler(this.redoClick);
             // 
             // addLine
             // 
@@ -140,8 +140,8 @@
 
         private System.Windows.Forms.PictureBox scene;
         private System.Windows.Forms.ToolStrip toolBar;
-        private System.Windows.Forms.ToolStripButton redo;
         private System.Windows.Forms.ToolStripButton undo;
+        private System.Windows.Forms.ToolStripButton redo;
         private System.Windows.Forms.ToolStripButton addLine;
         private System.Windows.Forms.ToolStripButton removeElement;
         private System.Windows.Forms.ToolStripButton cursor;

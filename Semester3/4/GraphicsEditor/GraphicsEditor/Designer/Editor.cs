@@ -111,22 +111,23 @@ namespace GraphicsEditor
                     Command moveCommand = new MoveCommand(newShape);
                     this.controller.Handle(moveCommand);
                 }
-
-                this.mouseDown = false;
-                this.mouseMove = false;
+                
                 scene.Invalidate();
             }
+
+            this.mouseDown = false;
+            this.mouseMove = false;
         }
         
-        private void redoClick(object sender, EventArgs e)
-        {
-            controller.Redo();
-            scene.Invalidate();
-        }
-
         private void undoClick(object sender, EventArgs e)
         {
             controller.Undo();
+            scene.Invalidate();
+        }
+
+        private void redoClick(object sender, EventArgs e)
+        {
+            controller.Redo();
             scene.Invalidate();
         }
 

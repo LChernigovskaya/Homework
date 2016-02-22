@@ -5,7 +5,7 @@ let rec fibonacci x =
     if x = 0 || x = 1 then 1 else fibonacci (x - 1) + fibonacci (x - 2)
 
 let reverse ls =
-    let rec reverseRec ls temps: int list =
+    let rec reverseRec ls (temps: int list) =
         match ls with
         | h :: t -> reverseRec t (h :: temps)
         | [] -> temps

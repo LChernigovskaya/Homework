@@ -10,13 +10,13 @@ let findInd ls number =
     findIndRec ls number 0
 
 let rec palindrome (str: string) =
-    let size = str.Length
-    match size with
-    | 0 -> true
-    | 1 -> true
-    | _ -> if str.Chars(0) = str.Chars(size - 1) 
-           then palindrome (str.Remove(0, 1).Remove(size - 2, 1))
-           else false
+    let list = List.ofArray (str.ToCharArray())
+    let rec reverseRec ls temps =
+        match ls with
+        | h :: t -> reverseRec t (h :: temps)
+        | [] -> temps
+    let reverces = reverseRec list []
+    reverces = list
 
 let rec differentElements ls =
     match ls with

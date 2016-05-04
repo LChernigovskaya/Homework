@@ -1,3 +1,8 @@
-Vasya 3856
-Nastya 53429
-Nikita 233
+Alex 1234
+Anya 4
+Julia 23455
+Katya 5673
+Lidiya 345
+Nastya 1234
+Vasya 67845
+Vika 523

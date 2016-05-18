@@ -6,22 +6,29 @@ type OS =
     }
 
 type Computer (os : OS, isInfected : bool, random : System.Random) = 
-    member val Infected = isInfected with get, set
+    let mutable infected = isInfected
+    member computer.Infected
+        with get() = infected
     member c.TryToInfect =
         let value = random.NextDouble()
-        os.probabilityOfInfection >= value
+        infected <- (os.probabilityOfInfection >= value)
 
 type Network(computers : array<Computer>, matrix : array<array<bool>>) =
     let mutable computers = computers
     let mutable indexInfected = List.empty
-    member n.MakeStep =  
+    let updateInfected (ls : list<int>) (i : int) =
+        if (computers.[i].Infected)
+        then (i :: ls)
+        else ls
+    do
         for i in [0..computers.Length - 1] do
-            if (computers.[i].Infected) then
+            indexInfected <- updateInfected indexInfected i
+    member n.MakeStep = 
+        for i in [0..indexInfected.Length - 1] do
                 for j in [0..computers.Length - 1] do
-                    if (matrix.[i].[j] && computers.[j].TryToInfect) then 
-                        indexInfected <- j :: indexInfected
-        for k in [0..indexInfected.Length - 1] do
-            computers.[indexInfected.[k]].Infected <- true
+                    if (not computers.[j].Infected && matrix.[indexInfected.[i]].[j]) then computers.[j].TryToInfect
+        for k in [0..computers.Length - 1] do
+            indexInfected <- updateInfected indexInfected k
     member n.State =
         for i in [0..computers.Length - 1] do
             if (computers.[i].Infected) then

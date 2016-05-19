@@ -1,12 +1,12 @@
 ﻿open System
 
-let strToInt str f = 
+let strToInt str  = 
     match Int32.TryParse(str) with
     | false, _ -> None
-    | true, value  -> f value
+    | true, value  -> Some value
 
 type MaybeBuilder() =
-    member this.Bind(m, f) = strToInt m f
+    member this.Bind(m, f) = Option.bind f (strToInt m)
     member this.Return(x) = Some(x)
 
 let maybe = new MaybeBuilder()

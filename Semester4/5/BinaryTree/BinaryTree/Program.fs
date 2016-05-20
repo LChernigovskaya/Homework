@@ -48,6 +48,7 @@ type BinarySearchTree<'a when 'a : comparison> () =
                      | Tree(element, Empty, r) -> Tree(element, left, r)
                      | Tree(element, l, r) -> let minLeft = findLeft l
                                               Tree(minLeft, recRemove minLeft l, r)
+                     | Tip(element) -> Tree(element, left, Empty)
         tree <- recRemove value tree
 
     member t.TreeToList =
@@ -88,17 +89,20 @@ type BinarySearchTree<'a when 'a : comparison> () =
                 }
 
 let binaryTree = new BinarySearchTree<int>()
-binaryTree.Add 9
+binaryTree.Add 4
+binaryTree.Add 2
+binaryTree.Add 6
 binaryTree.Add 3
+binaryTree.Add 1
 binaryTree.Add 5
 binaryTree.Add 7
-binaryTree.Add 1
+
 for i in binaryTree do
     printf "%A " i
 printfn ""
-printfn "%A" (binaryTree.Exist 3)
-binaryTree.Remove 3
-printfn "%A" (binaryTree.Exist 3)
+
+binaryTree.Remove 6
+
 for i in binaryTree do
     printf "%A " i
 printfn ""
